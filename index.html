@@ -75,131 +75,124 @@ footer{max-width:1120px;margin:auto;padding:0 16px 28px;color:var(--muted);font-
 <body>
 <header><div class="top">
   <div class="brand"><div class="mark">E</div><div><strong>ELHAM STUDIOS</strong><small>READ · REFLECT · GROW</small></div></div>
-  <div id="connectionStatus" class="status">Local mode · no AI connected</div>
+  <div id="connectionStatus" class="status">Checking backend…</div>
 </div></header>
 
 <main>
-  <section class="hero">
-    <div class="eyebrow">A quieter place to meet the Word</div>
-    <h1>Read Scripture.<br>Grow in prayer.</h1>
-    <p>Explore the Bible, keep your notes, and prepare a passage-grounded sermon focused on prayer and spiritual growth.</p>
-  </section>
+<section class="hero">
+<div class="eyebrow">A quieter place to meet the Word</div>
+<h1>Read Scripture.<br>Grow in prayer.</h1>
+<p>Explore the Bible, keep your notes, and prepare a passage-grounded sermon focused on prayer and spiritual growth.</p>
+</section>
 
-  <div class="grid">
-    <div class="stack">
-      <section class="card">
-        <div class="row between">
-          <div><h2>Bible reader</h2><p class="sub">King James Version or World English Bible.</p></div>
-          <span class="chip">66 books</span>
-        </div>
+<div class="grid">
+<div class="stack">
+<section class="card">
+<div class="row between">
+<div><h2>Bible reader</h2><p class="sub">King James Version or World English Bible.</p></div>
+<span class="chip">66 books</span>
+</div>
+<div class="reader-controls">
+<div class="field"><label for="bookSelect">Book</label><select id="bookSelect"></select></div>
+<div class="field"><label for="chapterSelect">Chapter</label><select id="chapterSelect"></select></div>
+<div class="field"><label for="translationSelect">Translation</label><select id="translationSelect"><option value="kjv">KJV</option><option value="web">WEB</option></select></div>
+<div class="field"><label for="fontSize">Reading size</label><select id="fontSize"><option value="17">Comfortable</option><option value="19">Large</option><option value="22">Extra large</option></select></div>
+</div>
+<div class="actions">
+<button class="btn" id="loadChapterBtn">Load chapter</button>
+<button class="btn secondary" id="bookmarkBtn">☆ Bookmark chapter</button>
+</div>
+<div id="readerMessage" class="message">Choose a book and chapter, then load it. Internet is required to fetch Bible text.</div>
+<div id="passageTitle" style="margin-top:16px;font-weight:700"></div>
+<div id="passage" class="passage"><div class="empty">Your selected chapter will appear here.</div></div>
+<div class="actions">
+<button class="btn ghost small" id="prevChapterBtn">← Previous</button>
+<button class="btn ghost small" id="nextChapterBtn">Next →</button>
+</div>
+</section>
 
-        <div class="reader-controls">
-          <div class="field"><label for="bookSelect">Book</label><select id="bookSelect"></select></div>
-          <div class="field"><label for="chapterSelect">Chapter</label><select id="chapterSelect"></select></div>
-          <div class="field"><label for="translationSelect">Translation</label><select id="translationSelect"><option value="kjv">KJV</option><option value="web">WEB</option></select></div>
-          <div class="field"><label for="fontSize">Reading size</label><select id="fontSize"><option value="17">Comfortable</option><option value="19">Large</option><option value="22">Extra large</option></select></div>
-        </div>
+<section class="card">
+<h2>Notes & journal</h2><p class="sub">Notes stay in this browser on this device.</p>
+<div class="field"><label for="noteTitle">Note title</label><input id="noteTitle" placeholder="What stood out to you?"></div>
+<div class="field" style="margin-top:10px"><label for="noteBody">Your reflection</label><textarea id="noteBody" placeholder="Write your thoughts, questions, or prayer..."></textarea></div>
+<div class="actions"><button class="btn" id="saveNoteBtn">Save note</button><button class="btn secondary" id="clearNoteBtn">Clear</button></div>
+<div id="notesList" class="note-list"></div>
+</section>
 
-        <div class="actions">
-          <button class="btn" id="loadChapterBtn">Load chapter</button>
-          <button class="btn secondary" id="bookmarkBtn">☆ Bookmark chapter</button>
-        </div>
-        <div id="readerMessage" class="message">Choose a book and chapter, then load it. Internet is required to fetch Bible text.</div>
-        <div id="passageTitle" style="margin-top:16px;font-weight:700"></div>
-        <div id="passage" class="passage"><div class="empty">Your selected chapter will appear here.</div></div>
-        <div class="actions">
-          <button class="btn ghost small" id="prevChapterBtn">← Previous</button>
-          <button class="btn ghost small" id="nextChapterBtn">Next →</button>
-        </div>
-      </section>
+<section class="card">
+<h2>Bookmarks</h2><p class="sub">Saved chapters are stored locally on this device.</p>
+<div id="bookmarksList" class="bookmark-list"><div class="empty">No bookmarks yet.</div></div>
+</section>
+</div>
 
-      <section class="card">
-        <h2>Notes & journal</h2><p class="sub">Notes stay in this browser on this device.</p>
-        <div class="field"><label for="noteTitle">Note title</label><input id="noteTitle" placeholder="What stood out to you?"></div>
-        <div class="field" style="margin-top:10px"><label for="noteBody">Your reflection</label><textarea id="noteBody" placeholder="Write your thoughts, questions, or prayer..."></textarea></div>
-        <div class="actions"><button class="btn" id="saveNoteBtn">Save note</button><button class="btn secondary" id="clearNoteBtn">Clear</button></div>
-        <div id="notesList" class="note-list"></div>
-      </section>
+<div class="stack">
+<section class="card">
+<div class="row between">
+<div><h2>Sermon engine</h2><p class="sub">15-minute sermon · prayer & spiritual growth</p></div>
+<span class="chip">Prototype</span>
+</div>
+<div class="field">
+<label for="sermonFocus">Focus</label>
+<select id="sermonFocus">
+<option value="prayer">Prayer and spiritual growth</option>
+<option value="understanding">Understand the chapter</option>
+<option value="application">Applying Scripture daily</option>
+<option value="gospel">Gospel and salvation</option>
+</select>
+</div>
+<div class="field" style="margin-top:10px">
+<label>Preaching profile</label>
+<div class="profile-options">
+<label class="profile"><input type="radio" name="profile" value="mitchell" checked><span><strong>Passionate, Scripture-centred</strong><small>General style reference: strong emphasis, careful exposition, practical challenge. Not an imitation of Philip Anthony Mitchell.</small></span></label>
+<label class="profile"><input type="radio" name="profile" value="billy"><span><strong>Clear evangelistic preaching</strong><small>General style reference: accessible Gospel message, hope, invitation, and direct application.</small></span></label>
+<label class="profile"><input type="radio" name="profile" value="elham"><span><strong>ELHAM Original</strong><small>Gentle, reflective teaching and prayer.</small></span></label>
+</div>
+</div>
+<div class="actions"><button class="btn full" id="generateSermonBtn">Prepare 15-minute sermon</button></div>
+<div id="sermonMessage" class="message">Full AI sermon generation requires a configured backend and model.</div>
+<div id="sermonOutput" class="sermon-output" hidden>
+<div class="row between wrap">
+<div><div class="eyebrow">Your sermon</div><h2 id="sermonTitle" style="margin-top:4px">Prayer that changes us</h2></div>
+<span class="chip" id="sermonMeta">15 minutes</span>
+</div>
+<div class="sermon-tools">
+<button class="btn secondary small" id="copySermonBtn">Copy sermon</button>
+<button class="btn secondary small" id="saveSermonBtn">Save to notes</button>
+<button class="btn ghost small" id="downloadSermonBtn">Download .txt</button>
+</div>
+<div id="sermonText" class="sermon-text"></div>
+<div class="sermon-tools">
+<button class="btn gold" id="playAudioBtn">Play generated audio</button>
+<button class="btn ghost small" id="stopAudioBtn">Stop audio</button>
+</div>
+<audio id="sermonAudio" controls style="width:100%;display:none"></audio>
+<div id="audioMessage" class="small-note">Audio requires a configured licensed, non-Google voice provider.</div>
+</div>
+</section>
 
-      <section class="card">
-        <h2>Bookmarks</h2><p class="sub">Saved chapters are stored locally on this device.</p>
-        <div id="bookmarksList" class="bookmark-list"><div class="empty">No bookmarks yet.</div></div>
-      </section>
-    </div>
+<section class="card">
+<h2>Ask about Scripture</h2>
+<p class="sub">Ask about the selected chapter. Live AI answers require a configured backend and model.</p>
+<div class="field"><label for="questionInput">Your question</label><textarea id="questionInput" style="min-height:78px" placeholder="What does this chapter teach me about prayer?"></textarea></div>
+<button class="btn full" id="askQuestionBtn" style="margin-top:10px">Ask about this chapter</button>
+<div id="answerMessage" class="message">AI answers are unavailable until the backend is configured.</div>
+<div id="answerOutput" class="sermon-text" style="margin-top:12px"></div>
+</section>
 
-    <div class="stack">
-      <section class="card">
-        <div class="row between">
-          <div><h2>Sermon engine</h2><p class="sub">15-minute sermon · prayer & spiritual growth</p></div>
-          <span class="chip">Prototype</span>
-        </div>
+<section class="card">
+<h2>Reading plan</h2>
+<p class="sub">A simple 7-day prayer and growth plan. Progress is stored on this device.</p>
+<div id="planList" class="bookmark-list"></div>
+<div class="actions"><button class="btn secondary" id="resetPlanBtn">Reset plan</button></div>
+</section>
 
-        <div class="field">
-          <label for="sermonFocus">Focus</label>
-          <select id="sermonFocus">
-            <option value="prayer">Prayer and spiritual growth</option>
-            <option value="understanding">Understand the chapter</option>
-            <option value="application">Applying Scripture daily</option>
-            <option value="gospel">Gospel and salvation</option>
-          </select>
-        </div>
-
-        <div class="field" style="margin-top:10px">
-          <label>Preaching profile</label>
-          <div class="profile-options">
-            <label class="profile"><input type="radio" name="profile" value="mitchell" checked><span><strong>Passionate, Scripture-centred</strong><small>General style reference: strong emphasis, careful exposition, practical challenge. Not an imitation of Philip Anthony Mitchell.</small></span></label>
-            <label class="profile"><input type="radio" name="profile" value="billy"><span><strong>Clear evangelistic preaching</strong><small>General style reference: accessible Gospel message, hope, invitation, and direct application.</small></span></label>
-            <label class="profile"><input type="radio" name="profile" value="elham"><span><strong>ELHAM Original</strong><small>Gentle, reflective teaching and prayer.</small></span></label>
-          </div>
-        </div>
-
-        <div class="actions"><button class="btn full" id="generateSermonBtn">Prepare 15-minute sermon</button></div>
-        <div id="sermonMessage" class="message">Local outline mode is available now. Full AI sermon generation requires a configured backend.</div>
-
-        <div id="sermonOutput" class="sermon-output" hidden>
-          <div class="row between wrap">
-            <div><div class="eyebrow">Your sermon</div><h2 id="sermonTitle" style="margin-top:4px">Prayer that changes us</h2></div>
-            <span class="chip" id="sermonMeta">15 minutes</span>
-          </div>
-          <div class="sermon-tools">
-            <button class="btn secondary small" id="copySermonBtn">Copy sermon</button>
-            <button class="btn secondary small" id="saveSermonBtn">Save to notes</button>
-            <button class="btn ghost small" id="downloadSermonBtn">Download .txt</button>
-          </div>
-          <div id="sermonText" class="sermon-text"></div>
-          <div class="sermon-tools">
-            <button class="btn gold" id="playAudioBtn">Play generated audio</button>
-            <button class="btn ghost small" id="stopAudioBtn">Stop audio</button>
-          </div>
-          <audio id="sermonAudio" controls style="width:100%;display:none"></audio>
-          <div id="audioMessage" class="small-note">Audio is not generated locally. Configure a licensed, non-Google TTS service in the backend to enable this button.</div>
-        </div>
-      </section>
-
-      <section class="card">
-        <h2>Ask about Scripture</h2>
-        <p class="sub">Questions should be answered from the selected chapter and cite relevant verses. Live AI answers need a backend.</p>
-        <div class="field"><label for="questionInput">Your question</label><textarea id="questionInput" style="min-height:78px" placeholder="What does this chapter teach me about prayer?"></textarea></div>
-        <button class="btn full" id="askQuestionBtn" style="margin-top:10px">Ask about this chapter</button>
-        <div id="answerMessage" class="message">Without a backend, this feature can provide a basic passage-based prompt, not a real AI answer.</div>
-        <div id="answerOutput" class="sermon-text" style="margin-top:12px"></div>
-      </section>
-
-      <section class="card">
-        <h2>Reading plan</h2>
-        <p class="sub">A simple 7-day prayer and growth plan. Progress is stored on this device.</p>
-        <div id="planList" class="bookmark-list"></div>
-        <div class="actions"><button class="btn secondary" id="resetPlanBtn">Reset plan</button></div>
-      </section>
-
-      <section class="card">
-        <h2>What is live today?</h2>
-        <p class="small-note">✓ Bible chapter fetching (internet required)<br>✓ Local bookmarks, notes, and reading-plan progress<br>✓ Local sermon outline based on the selected passage<br>○ Full AI-written 15-minute sermon: backend + model required<br>○ Bible Q&A with generated citations: backend + model required<br>○ Natural sermon audio: separate licensed non-Google TTS backend required<br>○ Cloud sync, offline Bible downloads, and user accounts: not included in this prototype</p>
-      </section>
-    </div>
-  </div>
+<section class="card">
+<h2>What is live today?</h2>
+<p class="small-note">✓ Bible chapter fetching (internet required)<br>✓ Local bookmarks, notes, and reading-plan progress<br>✓ Local sermon outline when the backend is unavailable<br>○ Full AI-written sermon: backend + model required<br>○ Bible Q&A: backend + model required<br>○ Natural sermon audio: licensed non-Google voice backend required<br>○ Cloud sync, offline downloads, and user accounts: not included</p>
+</section>
+</div>
+</div>
 </main>
-
 <footer>ELHAM STUDIOS · Scripture first. Honest about what is and isn't connected.</footer>
 
 <script>
@@ -209,14 +202,14 @@ const BOOKS = [
 
 const $ = id => document.getElementById(id);
 
-// If the backend is hosted separately, put its base URL here.
-const API_BASE = "";
+/* FIXED: connects the website to your Render backend. */
+const API_BASE = "https://elham-studios-backend.onrender.com";
 
 const STORE = {
-  bookmarks:"elham_bookmarks_v2",
-  notes:"elham_notes_v2",
-  plan:"elham_plan_v2",
-  last:"elham_last_v2"
+bookmarks:"elham_bookmarks_v2",
+notes:"elham_notes_v2",
+plan:"elham_plan_v2",
+last:"elham_last_v2"
 };
 
 let currentVerses = [];
@@ -225,527 +218,349 @@ let currentChapter = 15;
 let currentTranslation = "kjv";
 let currentSermon = "";
 
-function readStore(key, fallback) {
-  try { return JSON.parse(localStorage.getItem(key)) ?? fallback; }
-  catch { return fallback; }
+function readStore(key,fallback){
+try{return JSON.parse(localStorage.getItem(key)) ?? fallback}
+catch{return fallback}
+}
+function writeStore(key,value){
+try{localStorage.setItem(key,JSON.stringify(value))}
+catch(e){console.warn("Could not save locally",e)}
+}
+function esc(s){
+return String(s ?? "").replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
+}
+function msg(id,text,type=""){
+const e=$(id);
+e.textContent=text;
+e.className="message"+(type?" "+type:"");
+}
+function selectedBook(){
+return BOOKS.find(b=>b[0]===$("bookSelect").value)||BOOKS[0];
+}
+function fillChapters(){
+const b=selectedBook();
+$("chapterSelect").innerHTML=Array.from({length:b[1]},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join("");
+}
+function populateBooks(){
+$("bookSelect").innerHTML=BOOKS.map(b=>`<option>${b[0]}</option>`).join("");
+$("bookSelect").value=currentBook;
+fillChapters();
+$("chapterSelect").value=String(currentChapter);
+}
+$("bookSelect").addEventListener("change",fillChapters);
+$("fontSize").addEventListener("change",()=>$("passage").style.fontSize=$("fontSize").value+"px");
+
+function bibleUrl(book,chapter,translation){
+return `https://bible-api.com/${encodeURIComponent(book+" "+chapter)}?translation=${translation}`;
 }
 
-function writeStore(key, value) {
-  localStorage.setItem(key, JSON.stringify(value));
+async function loadChapter(){
+currentBook=$("bookSelect").value;
+currentChapter=Number($("chapterSelect").value);
+currentTranslation=$("translationSelect").value;
+$("loadChapterBtn").disabled=true;
+msg("readerMessage","Loading Bible passage…");
+$("passageTitle").textContent="";
+$("passage").innerHTML='<div class="empty">Loading…</div>';
+try{
+const res=await fetch(bibleUrl(currentBook,currentChapter,currentTranslation));
+if(!res.ok)throw new Error("Bible service returned "+res.status);
+const data=await res.json();
+if(!Array.isArray(data.verses)||!data.verses.length)throw new Error("No verses were returned.");
+currentVerses=data.verses.map(v=>({verse:v.verse,text:v.text.trim()}));
+$("passageTitle").textContent=`${currentBook} ${currentChapter} · ${currentTranslation.toUpperCase()}`;
+$("passage").innerHTML=currentVerses.map(v=>`<span class="verse"><sup>${v.verse}</sup>${esc(v.text)}</span>`).join("");
+msg("readerMessage",`${currentVerses.length} verses loaded. Notes and bookmarks stay on this device.`,"success");
+writeStore(STORE.last,{book:currentBook,chapter:currentChapter,translation:currentTranslation});
+}catch(err){
+currentVerses=[];
+$("passage").innerHTML='<div class="empty">Could not load the chapter. Check your connection and try again.</div>';
+msg("readerMessage",err.message+" · Internet is required to fetch Bible text.","error");
+}finally{$("loadChapterBtn").disabled=false}
 }
+$("loadChapterBtn").addEventListener("click",loadChapter);
 
-function esc(s) {
-  return String(s ?? "").replace(/[&<>"']/g, c => ({
-    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
-  }[c]));
+function moveChapter(step){
+let bi=BOOKS.findIndex(b=>b[0]===$("bookSelect").value);
+let ch=Number($("chapterSelect").value)+step;
+if(ch<1&&bi>0){bi--;ch=BOOKS[bi][1]}
+else if(ch>BOOKS[bi][1]&&bi<BOOKS.length-1){bi++;ch=1}
+ch=Math.max(1,Math.min(ch,BOOKS[bi][1]));
+$("bookSelect").value=BOOKS[bi][0];
+fillChapters();
+$("chapterSelect").value=String(ch);
+loadChapter();
 }
+$("prevChapterBtn").addEventListener("click",()=>moveChapter(-1));
+$("nextChapterBtn").addEventListener("click",()=>moveChapter(1));
 
-function msg(id, text, type = "") {
-  const e = $(id);
-  e.textContent = text;
-  e.className = "message" + (type ? " " + type : "");
+function chapterKey(){
+return `${$("bookSelect").value} ${$("chapterSelect").value} (${$("translationSelect").value.toUpperCase()})`;
 }
-
-function selectedBook() {
-  return BOOKS.find(b => b[0] === $("bookSelect").value) || BOOKS[0];
-}
-
-function fillChapters() {
-  const b = selectedBook();
-  $("chapterSelect").innerHTML = Array.from(
-    {length:b[1]},
-    (_,i) => `<option value="${i+1}">${i+1}</option>`
-  ).join("");
-}
-
-function populateBooks() {
-  $("bookSelect").innerHTML = BOOKS.map(b => `<option>${b[0]}</option>`).join("");
-  $("bookSelect").value = currentBook;
-  fillChapters();
-  $("chapterSelect").value = String(currentChapter);
-}
-
-$("bookSelect").addEventListener("change", fillChapters);
-$("fontSize").addEventListener("change", () => {
-  $("passage").style.fontSize = $("fontSize").value + "px";
+$("bookmarkBtn").addEventListener("click",()=>{
+const items=readStore(STORE.bookmarks,[]);
+const key=chapterKey();
+if(!items.some(x=>x.key===key))items.unshift({key,book:$("bookSelect").value,chapter:Number($("chapterSelect").value),translation:$("translationSelect").value});
+writeStore(STORE.bookmarks,items);
+renderBookmarks();
+msg("readerMessage","Bookmark saved on this device.","success");
 });
 
-function bibleUrl(book, chapter, translation) {
-  return `https://bible-api.com/${encodeURIComponent(book+" "+chapter)}?translation=${translation}`;
+function renderBookmarks(){
+const items=readStore(STORE.bookmarks,[]);
+$("bookmarksList").innerHTML=items.length?items.map((x,i)=>`
+<div class="saved-item"><div class="row between"><strong>${esc(x.key)}</strong><button class="btn ghost small" data-open-bookmark="${i}">Open</button></div><div class="actions"><button class="btn ghost small" data-remove-bookmark="${i}">Remove</button></div></div>`).join(""):'<div class="empty">No bookmarks yet.</div>';
 }
-
-async function loadChapter() {
-  currentBook = $("bookSelect").value;
-  currentChapter = Number($("chapterSelect").value);
-  currentTranslation = $("translationSelect").value;
-
-  $("loadChapterBtn").disabled = true;
-  msg("readerMessage", "Loading Bible passage…");
-  $("passageTitle").textContent = "";
-  $("passage").innerHTML = '<div class="empty">Loading…</div>';
-
-  try {
-    const res = await fetch(bibleUrl(currentBook, currentChapter, currentTranslation));
-    if (!res.ok) throw new Error("Bible service returned " + res.status);
-
-    const data = await res.json();
-    if (!Array.isArray(data.verses) || !data.verses.length) {
-      throw new Error("No verses were returned.");
-    }
-
-    currentVerses = data.verses.map(v => ({
-      verse:v.verse,
-      text:v.text.trim()
-    }));
-
-    $("passageTitle").textContent =
-      `${currentBook} ${currentChapter} · ${currentTranslation.toUpperCase()}`;
-
-    $("passage").innerHTML = currentVerses.map(v =>
-      `<span class="verse"><sup>${v.verse}</sup>${esc(v.text)}</span>`
-    ).join("");
-
-    msg("readerMessage",
-      `${currentVerses.length} verses loaded. Your notes and bookmarks remain on this device.`,
-      "success"
-    );
-
-    writeStore(STORE.last, {
-      book:currentBook,
-      chapter:currentChapter,
-      translation:currentTranslation
-    });
-  } catch (err) {
-    currentVerses = [];
-    $("passage").innerHTML =
-      '<div class="empty">Could not load the chapter. Check your connection and try again.</div>';
-    msg("readerMessage",
-      err.message + " · This reader needs internet to fetch Bible text.",
-      "error"
-    );
-  } finally {
-    $("loadChapterBtn").disabled = false;
-  }
+$("bookmarksList").addEventListener("click",e=>{
+const o=e.target.closest("[data-open-bookmark]");
+const r=e.target.closest("[data-remove-bookmark]");
+let items=readStore(STORE.bookmarks,[]);
+if(o){
+const x=items[+o.dataset.openBookmark];
+$("bookSelect").value=x.book;fillChapters();
+$("chapterSelect").value=String(x.chapter);
+$("translationSelect").value=x.translation;loadChapter();
 }
-
-$("loadChapterBtn").addEventListener("click", loadChapter);
-
-function moveChapter(step) {
-  let bi = BOOKS.findIndex(b => b[0] === $("bookSelect").value);
-  let ch = Number($("chapterSelect").value) + step;
-
-  if (ch < 1 && bi > 0) {
-    bi--;
-    ch = BOOKS[bi][1];
-  } else if (ch > BOOKS[bi][1] && bi < BOOKS.length - 1) {
-    bi++;
-    ch = 1;
-  }
-
-  ch = Math.max(1, Math.min(ch, BOOKS[bi][1]));
-  $("bookSelect").value = BOOKS[bi][0];
-  fillChapters();
-  $("chapterSelect").value = String(ch);
-  loadChapter();
-}
-
-$("prevChapterBtn").addEventListener("click", () => moveChapter(-1));
-$("nextChapterBtn").addEventListener("click", () => moveChapter(1));
-
-function chapterKey() {
-  return `${$("bookSelect").value} ${$("chapterSelect").value} (${ $("translationSelect").value.toUpperCase()})`;
-}
-
-$("bookmarkBtn").addEventListener("click", () => {
-  const items = readStore(STORE.bookmarks, []);
-  const key = chapterKey();
-
-  if (!items.some(x => x.key === key)) {
-    items.unshift({
-      key,
-      book:$("bookSelect").value,
-      chapter:Number($("chapterSelect").value),
-      translation:$("translationSelect").value
-    });
-  }
-
-  writeStore(STORE.bookmarks, items);
-  renderBookmarks();
-  msg("readerMessage", "Bookmark saved on this device.", "success");
+if(r){items.splice(+r.dataset.removeBookmark,1);writeStore(STORE.bookmarks,items);renderBookmarks()}
 });
 
-function renderBookmarks() {
-  const items = readStore(STORE.bookmarks, []);
-  $("bookmarksList").innerHTML = items.length
-    ? items.map((x,i) => `
-      <div class="saved-item">
-        <div class="row between">
-          <strong>${esc(x.key)}</strong>
-          <button class="btn ghost small" data-open-bookmark="${i}">Open</button>
-        </div>
-        <div class="actions">
-          <button class="btn ghost small" data-remove-bookmark="${i}">Remove</button>
-        </div>
-      </div>`).join("")
-    : '<div class="empty">No bookmarks yet.</div>';
+$("saveNoteBtn").addEventListener("click",()=>{
+const body=$("noteBody").value.trim();
+if(!body){msg("readerMessage","Write a note before saving.","error");return}
+const notes=readStore(STORE.notes,[]);
+notes.unshift({id:Date.now(),title:$("noteTitle").value.trim()||chapterKey(),body,reference:chapterKey(),date:new Date().toLocaleDateString()});
+writeStore(STORE.notes,notes);
+$("noteTitle").value="";$("noteBody").value="";
+renderNotes();
+});
+$("clearNoteBtn").addEventListener("click",()=>{$("noteTitle").value="";$("noteBody").value=""});
+
+function renderNotes(){
+const notes=readStore(STORE.notes,[]);
+$("notesList").innerHTML=notes.length?notes.map((n,i)=>`
+<div class="saved-item"><strong>${esc(n.title)}</strong><small>${esc(n.reference)} · ${esc(n.date)}</small><p>${esc(n.body)}</p><button class="btn ghost small" data-remove-note="${i}">Delete</button></div>`).join(""):'<div class="empty">No notes saved yet.</div>';
 }
-
-$("bookmarksList").addEventListener("click", e => {
-  const o = e.target.closest("[data-open-bookmark]");
-  const r = e.target.closest("[data-remove-bookmark]");
-  let items = readStore(STORE.bookmarks, []);
-
-  if (o) {
-    const x = items[+o.dataset.openBookmark];
-    $("bookSelect").value = x.book;
-    fillChapters();
-    $("chapterSelect").value = x.chapter;
-    $("translationSelect").value = x.translation;
-    loadChapter();
-  }
-
-  if (r) {
-    items.splice(+r.dataset.removeBookmark, 1);
-    writeStore(STORE.bookmarks, items);
-    renderBookmarks();
-  }
+$("notesList").addEventListener("click",e=>{
+const b=e.target.closest("[data-remove-note]");
+if(!b)return;
+const n=readStore(STORE.notes,[]);
+n.splice(+b.dataset.removeNote,1);
+writeStore(STORE.notes,n);renderNotes();
 });
 
-$("saveNoteBtn").addEventListener("click", () => {
-  const body = $("noteBody").value.trim();
-  if (!body) {
-    msg("readerMessage", "Write a note before saving.", "error");
-    return;
-  }
-
-  const notes = readStore(STORE.notes, []);
-  notes.unshift({
-    id:Date.now(),
-    title:$("noteTitle").value.trim() || chapterKey(),
-    body,
-    reference:chapterKey(),
-    date:new Date().toLocaleDateString()
-  });
-
-  writeStore(STORE.notes, notes);
-  $("noteTitle").value = "";
-  $("noteBody").value = "";
-  renderNotes();
-});
-
-$("clearNoteBtn").addEventListener("click", () => {
-  $("noteTitle").value = "";
-  $("noteBody").value = "";
-});
-
-function renderNotes() {
-  const notes = readStore(STORE.notes, []);
-  $("notesList").innerHTML = notes.length
-    ? notes.map((n,i) => `
-      <div class="saved-item">
-        <strong>${esc(n.title)}</strong>
-        <small>${esc(n.reference)} · ${esc(n.date)}</small>
-        <p>${esc(n.body)}</p>
-        <button class="btn ghost small" data-remove-note="${i}">Delete</button>
-      </div>`).join("")
-    : '<div class="empty">No notes saved yet.</div>';
-}
-
-$("notesList").addEventListener("click", e => {
-  const b = e.target.closest("[data-remove-note]");
-  if (!b) return;
-  const n = readStore(STORE.notes, []);
-  n.splice(+b.dataset.removeNote, 1);
-  writeStore(STORE.notes, n);
-  renderNotes();
-});
-
-function localSermon() {
-  const reference = chapterKey();
-  const verses = currentVerses.slice(0, 4);
-  const profile = document.querySelector('input[name="profile"]:checked').value;
-  const focus = $("sermonFocus").value;
-
-  const focusLabel = {
-    prayer:"Prayer and spiritual growth",
-    understanding:"Understanding the chapter",
-    application:"Applying Scripture daily",
-    gospel:"The Gospel and salvation"
-  }[focus];
-
-  const style = {
-    mitchell:"Passionate, Scripture-centred exposition with clear emphasis and practical challenge",
-    billy:"Clear, direct evangelistic teaching centred on hope and responding to the Gospel",
-    elham:"Gentle, reflective teaching with space for prayer"
-  }[profile];
-
-  const intro = verses.length
-    ? verses.map(v => `• Verse ${v.verse}: “${v.text}”`).join("\n")
-    : "No verses loaded.";
-
-  return `LOCAL SERMON STARTER — NOT AI-GENERATED
+function localSermon(){
+const reference=chapterKey();
+const verses=currentVerses.slice(0,4);
+const profile=document.querySelector('input[name="profile"]:checked').value;
+const focus=$("sermonFocus").value;
+const focusLabel={prayer:"Prayer and spiritual growth",understanding:"Understanding the chapter",application:"Applying Scripture daily",gospel:"The Gospel and salvation"}[focus];
+const style={mitchell:"Passionate, Scripture-centred exposition with practical challenge",billy:"Clear evangelistic teaching centred on hope and the Gospel",elham:"Gentle, reflective teaching with prayer"}[profile];
+const intro=verses.length?verses.map(v=>`• Verse ${v.verse}: “${v.text}”`).join("\n"):"No verses loaded.";
+return `LOCAL SERMON STARTER — NOT AI-GENERATED
 Passage: ${reference}
 Focus: ${focusLabel}
 Delivery guide: ${style}
 
-IMPORTANT: This is a structured starter outline. It is not a complete 15-minute sermon and is not a substitute for a chapter-aware sermon generated by a connected model.
+This is a starter outline, not a complete 15-minute sermon. A connected AI model is needed to generate a passage-specific manuscript.
 
 TITLE: Returning to God in Prayer
 
 OPENING — COME AS YOU ARE
-Begin by inviting the listener to slow down and come honestly before God. Prayer is not a performance for other people; it is a relationship in which we bring our attention, gratitude, confession, questions, and needs before the Lord. The aim is not to sound impressive but to become more attentive and faithful.
+Invite the listener to slow down and come honestly before God. Prayer is not a performance; it is a relationship in which we bring our gratitude, questions, needs, and attention before the Lord.
 
 READ THE PASSAGE
 ${intro}
 
 MOVEMENT 1 — LET SCRIPTURE SHAPE OUR PRAYERS
-Read the full chapter slowly. Notice what the passage reveals about God's character, human need, obedience, trust, and hope. Do not pull a verse out of context to make it say what the chapter does not say. Ask: What does this text actually teach? What does it reveal about God? What response does it invite?
+Read the entire chapter slowly. Notice what the passage reveals about God's character, human need, obedience, trust, and hope. Read verses in context rather than making them say something the chapter does not teach.
 
 MOVEMENT 2 — PRAYER IS ALSO FORMATION
-Spiritual growth is not only about asking God to change our circumstances. It also involves allowing Scripture to examine our priorities, motives, habits, and relationships. A mature prayer life makes room for thanksgiving, confession, listening, intercession, and willingness to obey. Growth is often steady and ordinary: returning to Scripture, forgiving, telling the truth, serving others, and asking for wisdom.
+Spiritual growth involves allowing Scripture to examine our priorities, motives, habits, and relationships. Make room for thanksgiving, confession, listening, intercession, and willingness to obey.
 
-MOVEMENT 3 — PRACTISE A SMALL, FAITHFUL RHYTHM
-Invite the listener to set aside a realistic daily time. Read a short portion of the chapter. Name one truth about God. Confess one area that needs attention. Pray for one person. Choose one practical act of obedience. Keep the practice honest rather than treating it as a scorecard. If a day is missed, begin again without pretending that failure is the end of the story.
+MOVEMENT 3 — PRACTISE A FAITHFUL RHYTHM
+Set aside a realistic daily time. Read a short portion, name one truth about God, pray for one person, and choose one practical act of obedience. If a day is missed, begin again.
 
-PERSONAL REFLECTION
-• What in this chapter draws my attention to God's character?
-• What am I carrying that I need to bring honestly to God?
-• Is there a response, habit, or relationship that Scripture calls me to address?
+REFLECTION
+• What does this chapter reveal about God?
+• What do I need to bring honestly to God?
+• What response does Scripture invite?
 • Who can I pray for and serve this week?
 
-APPLICATION FOR THIS WEEK
-Choose one sentence from the chapter to reread each morning. Write a brief prayer in your own words. At the end of the week, reflect on what you learned—not merely whether you felt something, but whether your choices are becoming more aligned with Scripture.
+APPLICATION
+Choose one sentence from the chapter to reread each morning. Write a brief prayer and consider how your choices can align more closely with Scripture.
 
 CLOSING PRAYER
-God, teach me to come before You honestly and humbly. Help me listen to Your Word with care, recognise what this passage truly teaches, and respond with faith. Grow in me a patient, truthful, and loving spirit. Give me courage to confess what needs to change, wisdom to take the next faithful step, and compassion to pray for others. Keep me grounded in Scripture rather than in empty words. Amen.
+God, teach me to come before You honestly and humbly. Help me understand Your Word in context and respond with faith. Give me wisdom for the next faithful step and compassion to pray for others. Keep me grounded in Scripture. Amen.
 
-PREACHER'S PREPARATION CHECK
-Before presenting this as a finished sermon, read the entire chapter and its surrounding context, verify every interpretation and verse reference, and expand each movement with accurate observations from the passage. A connected AI backend is required to generate a genuinely passage-specific 15-minute manuscript.`;
+PREPARATION
+Read the whole chapter and its surrounding context, and verify every interpretation and reference before presenting this as a finished sermon.`;
 }
 
-$("generateSermonBtn").addEventListener("click", async () => {
-  const btn = $("generateSermonBtn");
-  btn.disabled = true;
-  btn.textContent = "Preparing…";
-
-  const book = $("bookSelect").value;
-  const chapter = Number($("chapterSelect").value);
-  const translation = $("translationSelect").value;
-
-  try {
-    const backend = await fetch(API_BASE + "/api/sermon", {
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        book,
-        chapter,
-        translation,
-        verses:currentVerses,
-        focus:$("sermonFocus").value,
-        profile:document.querySelector('input[name="profile"]:checked').value,
-        minutes:15
-      })
-    });
-
-    if (backend.ok) {
-      const data = await backend.json();
-      currentSermon = data.sermon || "";
-      if (!currentSermon) throw new Error("Backend returned an empty sermon.");
-
-      $("sermonTitle").textContent = data.title || "A life shaped by prayer";
-      $("sermonMeta").textContent = "15-minute sermon · AI";
-      msg("sermonMessage",
-        "Generated by the connected sermon backend. Verify interpretation and citations against Scripture.",
-        "success"
-      );
-    } else {
-      throw new Error("AI backend not configured");
-    }
-  } catch {
-    currentSermon = localSermon();
-    $("sermonTitle").textContent = "Returning to God in Prayer";
-    $("sermonMeta").textContent = "Local starter outline";
-    msg("sermonMessage",
-      "Backend unavailable. Showing a local starter outline—not a full AI-generated 15-minute sermon.",
-      "error"
-    );
-  }
-
-  $("sermonText").textContent = currentSermon;
-  $("sermonOutput").hidden = false;
-  btn.disabled = false;
-  btn.textContent = "Prepare 15-minute sermon";
+$("generateSermonBtn").addEventListener("click",async()=>{
+const btn=$("generateSermonBtn");
+btn.disabled=true;btn.textContent="Preparing…";
+try{
+const response=await fetch(API_BASE+"/api/sermon",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+book:$("bookSelect").value,
+chapter:Number($("chapterSelect").value),
+translation:$("translationSelect").value,
+verses:currentVerses,
+focus:$("sermonFocus").value,
+profile:document.querySelector('input[name="profile"]:checked').value,
+minutes:15
+})
+});
+if(!response.ok)throw new Error("Sermon backend returned HTTP "+response.status);
+const data=await response.json();
+if(!data.sermon)throw new Error("Backend returned no sermon text.");
+currentSermon=data.sermon;
+$("sermonTitle").textContent=data.title||"A life shaped by prayer";
+$("sermonMeta").textContent="AI-generated · verify Scripture";
+msg("sermonMessage","Sermon returned by the backend. Verify its interpretation and references against Scripture.","success");
+}catch(error){
+currentSermon=localSermon();
+$("sermonTitle").textContent="Returning to God in Prayer";
+$("sermonMeta").textContent="Local starter outline";
+msg("sermonMessage","AI sermon unavailable: "+error.message+". Showing a local outline instead.","error");
+}
+$("sermonText").textContent=currentSermon;
+$("sermonOutput").hidden=false;
+btn.disabled=false;btn.textContent="Prepare 15-minute sermon";
 });
 
-$("copySermonBtn").addEventListener("click", async () => {
-  try {
-    await navigator.clipboard.writeText(currentSermon);
-    msg("sermonMessage", "Sermon copied.", "success");
-  } catch {
-    msg("sermonMessage", "Clipboard access is unavailable in this browser.", "error");
-  }
+$("copySermonBtn").addEventListener("click",async()=>{
+try{await navigator.clipboard.writeText(currentSermon);msg("sermonMessage","Sermon copied.","success")}
+catch{msg("sermonMessage","Clipboard access is unavailable in this browser.","error")}
+});
+$("saveSermonBtn").addEventListener("click",()=>{
+if(!currentSermon)return;
+const notes=readStore(STORE.notes,[]);
+notes.unshift({id:Date.now(),title:$("sermonTitle").textContent,body:currentSermon,reference:chapterKey(),date:new Date().toLocaleDateString()});
+writeStore(STORE.notes,notes);renderNotes();
+msg("sermonMessage","Sermon saved to local notes.","success");
+});
+$("downloadSermonBtn").addEventListener("click",()=>{
+const blob=new Blob([currentSermon],{type:"text/plain;charset=utf-8"});
+const url=URL.createObjectURL(blob);
+const a=document.createElement("a");a.href=url;a.download="elham-sermon.txt";a.click();
+setTimeout(()=>URL.revokeObjectURL(url),1000);
 });
 
-$("saveSermonBtn").addEventListener("click", () => {
-  if (!currentSermon) return;
-
-  const n = readStore(STORE.notes, []);
-  n.unshift({
-    id:Date.now(),
-    title:$("sermonTitle").textContent,
-    body:currentSermon,
-    reference:chapterKey(),
-    date:new Date().toLocaleDateString()
-  });
-
-  writeStore(STORE.notes, n);
-  renderNotes();
-  msg("sermonMessage", "Sermon saved to your local notes.", "success");
+$("playAudioBtn").addEventListener("click",async()=>{
+const btn=$("playAudioBtn");
+btn.disabled=true;
+$("audioMessage").textContent="Requesting audio from the configured non-Google voice backend…";
+try{
+if(!currentSermon)throw new Error("Prepare a sermon first.");
+const response=await fetch(API_BASE+"/api/voice",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({text:currentSermon,voice:document.querySelector('input[name="profile"]:checked').value})
+});
+if(!response.ok)throw new Error("Voice service unavailable.");
+const blob=await response.blob();
+if(!blob.size)throw new Error("Voice service returned empty audio.");
+const audio=$("sermonAudio");
+if(audio.dataset.objectUrl)URL.revokeObjectURL(audio.dataset.objectUrl);
+const url=URL.createObjectURL(blob);
+audio.dataset.objectUrl=url;audio.src=url;audio.style.display="block";
+await audio.play();
+$("audioMessage").textContent="Playing audio from the connected voice backend.";
+}catch(error){
+$("audioMessage").textContent="Audio unavailable: "+error.message+" No Google TTS or device speech synthesis is used.";
+}finally{btn.disabled=false}
+});
+$("stopAudioBtn").addEventListener("click",()=>{
+const audio=$("sermonAudio");audio.pause();audio.currentTime=0;
 });
 
-$("downloadSermonBtn").addEventListener("click", () => {
-  const blob = new Blob([currentSermon], {type:"text/plain;charset=utf-8"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "elham-sermon.txt";
-  a.click();
-  URL.revokeObjectURL(url);
+$("askQuestionBtn").addEventListener("click",async()=>{
+const question=$("questionInput").value.trim();
+if(!question){msg("answerMessage","Enter a question first.","error");return}
+const btn=$("askQuestionBtn");
+btn.disabled=true;btn.textContent="Asking…";
+try{
+const response=await fetch(API_BASE+"/api/ask",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+book:$("bookSelect").value,
+chapter:Number($("chapterSelect").value),
+translation:$("translationSelect").value,
+verses:currentVerses,
+question
+})
+});
+if(!response.ok)throw new Error("AI backend returned HTTP "+response.status);
+const data=await response.json();
+if(!data.answer)throw new Error("Backend returned no answer.");
+$("answerOutput").textContent=data.answer;
+msg("answerMessage","Answer returned by the backend. Check cited verses in context.","success");
+}catch(error){
+$("answerOutput").textContent=`I couldn't get an AI answer from the backend. Read ${chapterKey()} in full, examine the verses related to your question, and read their surrounding context.\n\nYour question: ${question}`;
+msg("answerMessage","Backend answer unavailable: "+error.message+". Showing guidance only.","error");
+}finally{btn.disabled=false;btn.textContent="Ask about this chapter"}
 });
 
-$("playAudioBtn").addEventListener("click", async () => {
-  const b = $("playAudioBtn");
-  b.disabled = true;
-  $("audioMessage").textContent = "Requesting audio from configured non-Google voice backend…";
-
-  try {
-    const res = await fetch(API_BASE + "/api/voice", {
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        text:currentSermon,
-        voice:document.querySelector('input[name="profile"]:checked').value
-      })
-    });
-
-    if (!res.ok) throw new Error("Voice backend is not configured.");
-
-    const blob = await res.blob();
-    const url = URL.createObjectURL(blob);
-    const audio = $("sermonAudio");
-    audio.src = url;
-    audio.style.display = "block";
-    await audio.play();
-    $("audioMessage").textContent = "Playing generated audio from the connected voice backend.";
-  } catch {
-    $("audioMessage").textContent =
-      "No voice backend is connected. No Google TTS or device speech synthesis is used. Configure a licensed non-Google TTS service on the backend.";
-  } finally {
-    b.disabled = false;
-  }
-});
-
-$("stopAudioBtn").addEventListener("click", () => {
-  const a = $("sermonAudio");
-  a.pause();
-  a.currentTime = 0;
-});
-
-$("askQuestionBtn").addEventListener("click", async () => {
-  const question = $("questionInput").value.trim();
-  if (!question) {
-    msg("answerMessage", "Enter a question first.", "error");
-    return;
-  }
-
-  try {
-    const r = await fetch(API_BASE + "/api/ask", {
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        book:$("bookSelect").value,
-        chapter:Number($("chapterSelect").value),
-        translation:$("translationSelect").value,
-        verses:currentVerses,
-        question
-      })
-    });
-
-    if (!r.ok) throw new Error("No AI backend");
-
-    const d = await r.json();
-    $("answerOutput").textContent = d.answer || "No answer returned.";
-    msg("answerMessage", "Backend answer. Check cited verses in context.", "success");
-  } catch {
-    $("answerOutput").textContent =
-      `I can't generate a verified AI answer while the backend is disconnected. Start by reading ${chapterKey()} in full. As you read, note the verses that address your question, read the surrounding verses, and compare your interpretation with the chapter's main message.\n\nYour question: ${question}`;
-
-    msg("answerMessage", "Local guidance only—not an AI answer or a verified interpretation.", "error");
-  }
-});
-
-const PLAN = [
-  ["Day 1","Begin with honesty","Read a chapter slowly. Tell God honestly what is on your mind."],
-  ["Day 2","Give thanks","Name three things you are thankful for and why."],
-  ["Day 3","Confession and renewal","Ask what needs to change, and identify one practical next step."],
-  ["Day 4","Pray for someone","Pray for one person and consider a practical act of care."],
-  ["Day 5","Listen to Scripture","Reread a short passage; write one observation and one question."],
-  ["Day 6","Practise obedience","Choose one clear, loving action consistent with Scripture."],
-  ["Day 7","Reflect and continue","Review your notes and choose a realistic rhythm for next week."]
+const PLAN=[
+["Day 1","Begin with honesty","Read a chapter slowly. Tell God honestly what is on your mind."],
+["Day 2","Give thanks","Name three things you are thankful for and why."],
+["Day 3","Confession and renewal","Ask what needs to change and identify one practical next step."],
+["Day 4","Pray for someone","Pray for one person and consider a practical act of care."],
+["Day 5","Listen to Scripture","Reread a short passage; write one observation and one question."],
+["Day 6","Practise obedience","Choose one loving action consistent with Scripture."],
+["Day 7","Reflect and continue","Review your notes and choose a realistic rhythm for next week."]
 ];
-
-function renderPlan() {
-  const p = readStore(STORE.plan, {});
-  $("planList").innerHTML = PLAN.map((x,i) => `
-    <label class="saved-item row" style="align-items:flex-start">
-      <input type="checkbox" data-plan="${i}" ${p[i] ? "checked" : ""} style="width:auto;margin-top:4px">
-      <span><strong>${x[0]} · ${x[1]}</strong><p>${x[2]}</p></span>
-    </label>
-  `).join("");
+function renderPlan(){
+const progress=readStore(STORE.plan,{});
+$("planList").innerHTML=PLAN.map((x,i)=>`
+<label class="saved-item row" style="align-items:flex-start">
+<input type="checkbox" data-plan="${i}" ${progress[i]?"checked":""} style="width:auto;margin-top:4px">
+<span><strong>${x[0]} · ${x[1]}</strong><p>${x[2]}</p></span>
+</label>`).join("");
 }
-
-$("planList").addEventListener("change", e => {
-  const c = e.target.closest("[data-plan]");
-  if (!c) return;
-  const p = readStore(STORE.plan, {});
-  p[c.dataset.plan] = c.checked;
-  writeStore(STORE.plan, p);
+$("planList").addEventListener("change",e=>{
+const c=e.target.closest("[data-plan]");
+if(!c)return;
+const progress=readStore(STORE.plan,{});
+progress[c.dataset.plan]=c.checked;
+writeStore(STORE.plan,progress);
 });
+$("resetPlanBtn").addEventListener("click",()=>{writeStore(STORE.plan,{});renderPlan()});
 
-$("resetPlanBtn").addEventListener("click", () => {
-  writeStore(STORE.plan, {});
-  renderPlan();
-});
-
-async function checkBackend() {
-  try {
-    const r = await fetch(API_BASE + "/api/health");
-    if (r.ok) {
-      const d = await r.json();
-      $("connectionStatus").textContent = d.ai_configured
-        ? "AI backend connected"
-        : "Backend online · AI not configured";
-      return;
-    }
-  } catch {}
-
-  $("connectionStatus").textContent = "Local mode · no AI connected";
+async function checkBackend(){
+try{
+const response=await fetch(API_BASE+"/api/health");
+if(!response.ok)throw new Error("Health check failed");
+const data=await response.json();
+$("connectionStatus").textContent=data.ai_configured
+?"Backend online · AI configured"
+:"Backend online · AI not configured";
+}catch{
+$("connectionStatus").textContent="Backend unavailable";
+}
 }
 
 populateBooks();
 renderBookmarks();
 renderNotes();
 renderPlan();
-checkBackend();
 
-const last = readStore(STORE.last, null);
-if (last && BOOKS.some(b => b[0] === last.book)) {
-  currentBook = last.book;
-  currentChapter = last.chapter;
-  currentTranslation = last.translation;
-  populateBooks();
+const last=readStore(STORE.last,null);
+if(last&&BOOKS.some(b=>b[0]===last.book)){
+currentBook=last.book;
+currentChapter=last.chapter;
+currentTranslation=last.translation;
+populateBooks();
+$("translationSelect").value=currentTranslation;
 }
 
+checkBackend();
 loadChapter();
 </script>
 </body>
