@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f6f3eb">
+<title>ELHAM STUDIOS — Bible & Sermon</title>
+<style>
+:root{--paper:#f7f4ec;--card:#fffdf8;--ink:#28352d;--muted:#718075;--sage:#71866e;--sage-dark:#49634e;--gold:#b69a59;--line:#e5e0d4;--soft:#e9eee5;--danger:#9d4c43;--shadow:0 10px 30px rgba(42,56,43,.07)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.55;cursor:wait}
+header{position:sticky;top:0;z-index:10;background:rgba(247,244,236,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:12px 16px}
+.top{max-width:1120px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px}
+.mark{width:40px;height:40px;border-radius:14px;background:var(--sage-dark);color:white;display:grid;place-items:center;font-family:Georgia,serif;font-size:22px}
+.brand strong{display:block;letter-spacing:.13em;font-size:13px}
+.brand small{color:var(--muted);font-size:11px;letter-spacing:.08em}
+.status{font-size:11px;border:1px solid var(--line);background:var(--card);padding:6px 9px;border-radius:99px;color:var(--muted)}
+main{max-width:1120px;margin:0 auto;padding:22px 14px 80px}
+.hero{padding:25px 22px;border-radius:24px;background:linear-gradient(130deg,#e6ece1,#f5eddb);border:1px solid #dce3d7;margin-bottom:18px}
+.eyebrow{color:var(--sage-dark);font-size:11px;font-weight:800;letter-spacing:.17em;text-transform:uppercase}
+.hero h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(28px,5vw,44px);font-weight:500;line-height:1.1;margin:8px 0}
+.hero p{max-width:620px;color:#58665a;margin:0}
+.grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:16px;align-items:start}
+.stack{display:grid;gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow);min-width:0}
+.card h2{font-family:Georgia,"Times New Roman",serif;font-size:23px;font-weight:500;margin:0 0 5px}
+.sub{font-size:13px;color:var(--muted);margin:0 0 15px}
+.row{display:flex;gap:9px;align-items:center}
+.row>*{min-width:0}
+.row.wrap{flex-wrap:wrap}
+.row.between{justify-content:space-between}
+.field{display:grid;gap:5px;flex:1}
+.field label,.label{font-size:12px;color:var(--muted);font-weight:700}
+select,input,textarea{width:100%;border:1px solid var(--line);border-radius:12px;background:#fffefa;padding:11px 12px;color:var(--ink);outline:none}
+select:focus,input:focus,textarea:focus{border-color:var(--sage);box-shadow:0 0 0 3px #71866e20}
+textarea{resize:vertical;min-height:110px}
+.btn{border:0;background:var(--sage-dark);color:#fff;border-radius:12px;padding:11px 14px;font-weight:700;font-size:13px}
+.btn.secondary{background:var(--soft);color:var(--sage-dark);border:1px solid #dbe3d6}
+.btn.ghost{background:transparent;color:var(--sage-dark);border:1px solid var(--line)}
+.btn.gold{background:var(--gold);color:#fff}
+.btn.full{width:100%}
+.btn.small{padding:7px 10px;font-size:12px}
+.reader-controls{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.passage{margin-top:16px;line-height:1.9;font-family:Georgia,"Times New Roman",serif;font-size:18px;white-space:pre-wrap}
+.verse{display:block;margin:0 0 10px}
+.verse sup{font-family:system-ui,sans-serif;font-size:11px;color:var(--gold);font-weight:800;margin-right:7px}
+.empty{padding:20px 12px;text-align:center;color:var(--muted);font-size:13px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.note-list,.bookmark-list{display:grid;gap:8px;margin-top:12px}
+.saved-item{border:1px solid var(--line);border-radius:12px;padding:11px;background:#fffefa}
+.saved-item strong{font-size:13px;display:block}
+.saved-item p{margin:4px 0;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}
+.saved-item small{color:var(--muted)}
+.profile-options{display:grid;gap:8px}
+.profile{display:flex;gap:10px;align-items:flex-start;padding:11px;border:1px solid var(--line);border-radius:13px}
+.profile input{width:auto;margin-top:4px;accent-color:var(--sage-dark)}
+.profile strong{font-size:13px;display:block}
+.profile small{font-size:12px;color:var(--muted);display:block}
+.chip{display:inline-flex;align-items:center;gap:6px;border-radius:99px;background:var(--soft);padding:5px 9px;font-size:11px;color:var(--sage-dark);font-weight:700}
+.sermon-output{border-top:1px solid var(--line);margin-top:16px;padding-top:16px}
+.sermon-text{white-space:pre-wrap;font-family:Georgia,"Times New Roman",serif;line-height:1.8;font-size:16px;overflow-wrap:anywhere}
+.sermon-tools{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.message{font-size:12px;padding:10px 12px;border-radius:12px;background:#f2efe5;color:#657063;margin-top:10px}
+.message.error{background:#f8e9e6;color:var(--danger)}
+.message.success{background:#e7f0e5;color:#47634a}
+.small-note{font-size:11px;color:var(--muted);line-height:1.5}
+footer{max-width:1120px;margin:auto;padding:0 16px 28px;color:var(--muted);font-size:11px;text-align:center}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.hero{padding:22px 18px}.card{padding:15px}.passage{font-size:17px}.status{max-width:118px;text-align:center}.reader-controls{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header><div class="top">
+  <div class="brand"><div class="mark">E</div><div><strong>ELHAM STUDIOS</strong><small>READ · REFLECT · GROW</small></div></div>
+  <div id="connectionStatus" class="status">Local mode · no AI connected</div>
+</div></header>
+
+<main>
+  <section class="hero">
+    <div class="eyebrow">A quieter place to meet the Word</div>
+    <h1>Read Scripture.<br>Grow in prayer.</h1>
+    <p>Explore the Bible, keep your notes, and prepare a passage-grounded sermon focused on prayer and spiritual growth.</p>
+  </section>
+
+  <div class="grid">
+    <div class="stack">
+      <section class="card">
+        <div class="row between">
+          <div><h2>Bible reader</h2><p class="sub">King James Version or World English Bible.</p></div>
+          <span class="chip">66 books</span>
+        </div>
+
+        <div class="reader-controls">
+          <div class="field"><label for="bookSelect">Book</label><select id="bookSelect"></select></div>
+          <div class="field"><label for="chapterSelect">Chapter</label><select id="chapterSelect"></select></div>
+          <div class="field"><label for="translationSelect">Translation</label><select id="translationSelect"><option value="kjv">KJV</option><option value="web">WEB</option></select></div>
+          <div class="field"><label for="fontSize">Reading size</label><select id="fontSize"><option value="17">Comfortable</option><option value="19">Large</option><option value="22">Extra large</option></select></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn" id="loadChapterBtn">Load chapter</button>
+          <button class="btn secondary" id="bookmarkBtn">☆ Bookmark chapter</button>
+        </div>
+        <div id="readerMessage" class="message">Choose a book and chapter, then load it. Internet is required to fetch Bible text.</div>
+        <div id="passageTitle" style="margin-top:16px;font-weight:700"></div>
+        <div id="passage" class="passage"><div class="empty">Your selected chapter will appear here.</div></div>
+        <div class="actions">
+          <button class="btn ghost small" id="prevChapterBtn">← Previous</button>
+          <button class="btn ghost small" id="nextChapterBtn">Next →</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Notes & journal</h2><p class="sub">Notes stay in this browser on this device.</p>
+        <div class="field"><label for="noteTitle">Note title</label><input id="noteTitle" placeholder="What stood out to you?"></div>
+        <div class="field" style="margin-top:10px"><label for="noteBody">Your reflection</label><textarea id="noteBody" placeholder="Write your thoughts, questions, or prayer..."></textarea></div>
+        <div class="actions"><button class="btn" id="saveNoteBtn">Save note</button><button class="btn secondary" id="clearNoteBtn">Clear</button></div>
+        <div id="notesList" class="note-list"></div>
+      </section>
+
+      <section class="card">
+        <h2>Bookmarks</h2><p class="sub">Saved chapters are stored locally on this device.</p>
+        <div id="bookmarksList" class="bookmark-list"><div class="empty">No bookmarks yet.</div></div>
+      </section>
+    </div>
+
+    <div class="stack">
+      <section class="card">
+        <div class="row between">
+          <div><h2>Sermon engine</h2><p class="sub">15-minute sermon · prayer & spiritual growth</p></div>
+          <span class="chip">Prototype</span>
+        </div>
+
+        <div class="field">
+          <label for="sermonFocus">Focus</label>
+          <select id="sermonFocus">
+            <option value="prayer">Prayer and spiritual growth</option>
+            <option value="understanding">Understand the chapter</option>
+            <option value="application">Applying Scripture daily</option>
+            <option value="gospel">Gospel and salvation</option>
+          </select>
+        </div>
+
+        <div class="field" style="margin-top:10px">
+          <label>Preaching profile</label>
+          <div class="profile-options">
+            <label class="profile"><input type="radio" name="profile" value="mitchell" checked><span><strong>Passionate, Scripture-centred</strong><small>General style reference: strong emphasis, careful exposition, practical challenge. Not an imitation of Philip Anthony Mitchell.</small></span></label>
+            <label class="profile"><input type="radio" name="profile" value="billy"><span><strong>Clear evangelistic preaching</strong><small>General style reference: accessible Gospel message, hope, invitation, and direct application.</small></span></label>
+            <label class="profile"><input type="radio" name="profile" value="elham"><span><strong>ELHAM Original</strong><small>Gentle, reflective teaching and prayer.</small></span></label>
+          </div>
+        </div>
+
+        <div class="actions"><button class="btn full" id="generateSermonBtn">Prepare 15-minute sermon</button></div>
+        <div id="sermonMessage" class="message">Local outline mode is available now. Full AI sermon generation requires a configured backend.</div>
+
+        <div id="sermonOutput" class="sermon-output" hidden>
+          <div class="row between wrap">
+            <div><div class="eyebrow">Your sermon</div><h2 id="sermonTitle" style="margin-top:4px">Prayer that changes us</h2></div>
+            <span class="chip" id="sermonMeta">15 minutes</span>
+          </div>
+          <div class="sermon-tools">
+            <button class="btn secondary small" id="copySermonBtn">Copy sermon</button>
+            <button class="btn secondary small" id="saveSermonBtn">Save to notes</button>
+            <button class="btn ghost small" id="downloadSermonBtn">Download .txt</button>
+          </div>
+          <div id="sermonText" class="sermon-text"></div>
+          <div class="sermon-tools">
+            <button class="btn gold" id="playAudioBtn">Play generated audio</button>
+            <button class="btn ghost small" id="stopAudioBtn">Stop audio</button>
+          </div>
+          <audio id="sermonAudio" controls style="width:100%;display:none"></audio>
+          <div id="audioMessage" class="small-note">Audio is not generated locally. Configure a licensed, non-Google TTS service in the backend to enable this button.</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Ask about Scripture</h2>
+        <p class="sub">Questions should be answered from the selected chapter and cite relevant verses. Live AI answers need a backend.</p>
+        <div class="field"><label for="questionInput">Your question</label><textarea id="questionInput" style="min-height:78px" placeholder="What does this chapter teach me about prayer?"></textarea></div>
+        <button class="btn full" id="askQuestionBtn" style="margin-top:10px">Ask about this chapter</button>
+        <div id="answerMessage" class="message">Without a backend, this feature can provide a basic passage-based prompt, not a real AI answer.</div>
+        <div id="answerOutput" class="sermon-text" style="margin-top:12px"></div>
+      </section>
+
+      <section class="card">
+        <h2>Reading plan</h2>
+        <p class="sub">A simple 7-day prayer and growth plan. Progress is stored on this device.</p>
+        <div id="planList" class="bookmark-list"></div>
+        <div class="actions"><button class="btn secondary" id="resetPlanBtn">Reset plan</button></div>
+      </section>
+
+      <section class="card">
+        <h2>What is live today?</h2>
+        <p class="small-note">✓ Bible chapter fetching (internet required)<br>✓ Local bookmarks, notes, and reading-plan progress<br>✓ Local sermon outline based on the selected passage<br>○ Full AI-written 15-minute sermon: backend + model required<br>○ Bible Q&A with generated citations: backend + model required<br>○ Natural sermon audio: separate licensed non-Google TTS backend required<br>○ Cloud sync, offline Bible downloads, and user accounts: not included in this prototype</p>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer>ELHAM STUDIOS · Scripture first. Honest about what is and isn't connected.</footer>
+
+<script>
+const BOOKS = [
+["Genesis",50],["Exodus",40],["Leviticus",27],["Numbers",36],["Deuteronomy",34],["Joshua",24],["Judges",21],["Ruth",4],["1 Samuel",31],["2 Samuel",24],["1 Kings",22],["2 Kings",25],["1 Chronicles",29],["2 Chronicles",36],["Ezra",10],["Nehemiah",13],["Esther",10],["Job",42],["Psalms",150],["Proverbs",31],["Ecclesiastes",12],["Song of Solomon",8],["Isaiah",66],["Jeremiah",52],["Lamentations",5],["Ezekiel",48],["Daniel",12],["Hosea",14],["Joel",3],["Amos",9],["Obadiah",1],["Jonah",4],["Micah",7],["Nahum",3],["Habakkuk",3],["Zephaniah",3],["Haggai",2],["Zechariah",14],["Malachi",4],["Matthew",28],["Mark",16],["Luke",24],["John",21],["Acts",28],["Romans",16],["1 Corinthians",16],["2 Corinthians",13],["Galatians",6],["Ephesians",6],["Philippians",4],["Colossians",4],["1 Thessalonians",5],["2 Thessalonians",3],["1 Timothy",6],["2 Timothy",4],["Titus",3],["Philemon",1],["Hebrews",13],["James",5],["1 Peter",5],["2 Peter",3],["1 John",5],["2 John",1],["3 John",1],["Jude",1],["Revelation",22]
+];
+
+const $ = id => document.getElementById(id);
+
+// If the backend is hosted separately, put its base URL here.
+const API_BASE = "";
+
+const STORE = {
+  bookmarks:"elham_bookmarks_v2",
+  notes:"elham_notes_v2",
+  plan:"elham_plan_v2",
+  last:"elham_last_v2"
+};
+
+let currentVerses = [];
+let currentBook = "John";
+let currentChapter = 15;
+let currentTranslation = "kjv";
+let currentSermon = "";
+
+function readStore(key, fallback) {
+  try { return JSON.parse(localStorage.getItem(key)) ?? fallback; }
+  catch { return fallback; }
+}
+
+function writeStore(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+function esc(s) {
+  return String(s ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+  }[c]));
+}
+
+function msg(id, text, type = "") {
+  const e = $(id);
+  e.textContent = text;
+  e.className = "message" + (type ? " " + type : "");
+}
+
+function selectedBook() {
+  return BOOKS.find(b => b[0] === $("bookSelect").value) || BOOKS[0];
+}
+
+function fillChapters() {
+  const b = selectedBook();
+  $("chapterSelect").innerHTML = Array.from(
+    {length:b[1]},
+    (_,i) => `<option value="${i+1}">${i+1}</option>`
+  ).join("");
+}
+
+function populateBooks() {
+  $("bookSelect").innerHTML = BOOKS.map(b => `<option>${b[0]}</option>`).join("");
+  $("bookSelect").value = currentBook;
+  fillChapters();
+  $("chapterSelect").value = String(currentChapter);
+}
+
+$("bookSelect").addEventListener("change", fillChapters);
+$("fontSize").addEventListener("change", () => {
+  $("passage").style.fontSize = $("fontSize").value + "px";
+});
+
+function bibleUrl(book, chapter, translation) {
+  return `https://bible-api.com/${encodeURIComponent(book+" "+chapter)}?translation=${translation}`;
+}
+
+async function loadChapter() {
+  currentBook = $("bookSelect").value;
+  currentChapter = Number($("chapterSelect").value);
+  currentTranslation = $("translationSelect").value;
+
+  $("loadChapterBtn").disabled = true;
+  msg("readerMessage", "Loading Bible passage…");
+  $("passageTitle").textContent = "";
+  $("passage").innerHTML = '<div class="empty">Loading…</div>';
+
+  try {
+    const res = await fetch(bibleUrl(currentBook, currentChapter, currentTranslation));
+    if (!res.ok) throw new Error("Bible service returned " + res.status);
+
+    const data = await res.json();
+    if (!Array.isArray(data.verses) || !data.verses.length) {
+      throw new Error("No verses were returned.");
+    }
+
+    currentVerses = data.verses.map(v => ({
+      verse:v.verse,
+      text:v.text.trim()
+    }));
+
+    $("passageTitle").textContent =
+      `${currentBook} ${currentChapter} · ${currentTranslation.toUpperCase()}`;
+
+    $("passage").innerHTML = currentVerses.map(v =>
+      `<span class="verse"><sup>${v.verse}</sup>${esc(v.text)}</span>`
+    ).join("");
+
+    msg("readerMessage",
+      `${currentVerses.length} verses loaded. Your notes and bookmarks remain on this device.`,
+      "success"
+    );
+
+    writeStore(STORE.last, {
+      book:currentBook,
+      chapter:currentChapter,
+      translation:currentTranslation
+    });
+  } catch (err) {
+    currentVerses = [];
+    $("passage").innerHTML =
+      '<div class="empty">Could not load the chapter. Check your connection and try again.</div>';
+    msg("readerMessage",
+      err.message + " · This reader needs internet to fetch Bible text.",
+      "error"
+    );
+  } finally {
+    $("loadChapterBtn").disabled = false;
+  }
+}
+
+$("loadChapterBtn").addEventListener("click", loadChapter);
+
+function moveChapter(step) {
+  let bi = BOOKS.findIndex(b => b[0] === $("bookSelect").value);
+  let ch = Number($("chapterSelect").value) + step;
+
+  if (ch < 1 && bi > 0) {
+    bi--;
+    ch = BOOKS[bi][1];
+  } else if (ch > BOOKS[bi][1] && bi < BOOKS.length - 1) {
+    bi++;
+    ch = 1;
+  }
+
+  ch = Math.max(1, Math.min(ch, BOOKS[bi][1]));
+  $("bookSelect").value = BOOKS[bi][0];
+  fillChapters();
+  $("chapterSelect").value = String(ch);
+  loadChapter();
+}
+
+$("prevChapterBtn").addEventListener("click", () => moveChapter(-1));
+$("nextChapterBtn").addEventListener("click", () => moveChapter(1));
+
+function chapterKey() {
+  return `${$("bookSelect").value} ${$("chapterSelect").value} (${ $("translationSelect").value.toUpperCase()})`;
+}
+
+$("bookmarkBtn").addEventListener("click", () => {
+  const items = readStore(STORE.bookmarks, []);
+  const key = chapterKey();
+
+  if (!items.some(x => x.key === key)) {
+    items.unshift({
+      key,
+      book:$("bookSelect").value,
+      chapter:Number($("chapterSelect").value),
+      translation:$("translationSelect").value
+    });
+  }
+
+  writeStore(STORE.bookmarks, items);
+  renderBookmarks();
+  msg("readerMessage", "Bookmark saved on this device.", "success");
+});
+
+function renderBookmarks() {
+  const items = readStore(STORE.bookmarks, []);
+  $("bookmarksList").innerHTML = items.length
+    ? items.map((x,i) => `
+      <div class="saved-item">
+        <div class="row between">
+          <strong>${esc(x.key)}</strong>
+          <button class="btn ghost small" data-open-bookmark="${i}">Open</button>
+        </div>
+        <div class="actions">
+          <button class="btn ghost small" data-remove-bookmark="${i}">Remove</button>
+        </div>
+      </div>`).join("")
+    : '<div class="empty">No bookmarks yet.</div>';
+}
+
+$("bookmarksList").addEventListener("click", e => {
+  const o = e.target.closest("[data-open-bookmark]");
+  const r = e.target.closest("[data-remove-bookmark]");
+  let items = readStore(STORE.bookmarks, []);
+
+  if (o) {
+    const x = items[+o.dataset.openBookmark];
+    $("bookSelect").value = x.book;
+    fillChapters();
+    $("chapterSelect").value = x.chapter;
+    $("translationSelect").value = x.translation;
+    loadChapter();
+  }
+
+  if (r) {
+    items.splice(+r.dataset.removeBookmark, 1);
+    writeStore(STORE.bookmarks, items);
+    renderBookmarks();
+  }
+});
+
+$("saveNoteBtn").addEventListener("click", () => {
+  const body = $("noteBody").value.trim();
+  if (!body) {
+    msg("readerMessage", "Write a note before saving.", "error");
+    return;
+  }
+
+  const notes = readStore(STORE.notes, []);
+  notes.unshift({
+    id:Date.now(),
+    title:$("noteTitle").value.trim() || chapterKey(),
+    body,
+    reference:chapterKey(),
+    date:new Date().toLocaleDateString()
+  });
+
+  writeStore(STORE.notes, notes);
+  $("noteTitle").value = "";
+  $("noteBody").value = "";
+  renderNotes();
+});
+
+$("clearNoteBtn").addEventListener("click", () => {
+  $("noteTitle").value = "";
+  $("noteBody").value = "";
+});
+
+function renderNotes() {
+  const notes = readStore(STORE.notes, []);
+  $("notesList").innerHTML = notes.length
+    ? notes.map((n,i) => `
+      <div class="saved-item">
+        <strong>${esc(n.title)}</strong>
+        <small>${esc(n.reference)} · ${esc(n.date)}</small>
+        <p>${esc(n.body)}</p>
+        <button class="btn ghost small" data-remove-note="${i}">Delete</button>
+      </div>`).join("")
+    : '<div class="empty">No notes saved yet.</div>';
+}
+
+$("notesList").addEventListener("click", e => {
+  const b = e.target.closest("[data-remove-note]");
+  if (!b) return;
+  const n = readStore(STORE.notes, []);
+  n.splice(+b.dataset.removeNote, 1);
+  writeStore(STORE.notes, n);
+  renderNotes();
+});
+
+function localSermon() {
+  const reference = chapterKey();
+  const verses = currentVerses.slice(0, 4);
+  const profile = document.querySelector('input[name="profile"]:checked').value;
+  const focus = $("sermonFocus").value;
+
+  const focusLabel = {
+    prayer:"Prayer and spiritual growth",
+    understanding:"Understanding the chapter",
+    application:"Applying Scripture daily",
+    gospel:"The Gospel and salvation"
+  }[focus];
+
+  const style = {
+    mitchell:"Passionate, Scripture-centred exposition with clear emphasis and practical challenge",
+    billy:"Clear, direct evangelistic teaching centred on hope and responding to the Gospel",
+    elham:"Gentle, reflective teaching with space for prayer"
+  }[profile];
+
+  const intro = verses.length
+    ? verses.map(v => `• Verse ${v.verse}: “${v.text}”`).join("\n")
+    : "No verses loaded.";
+
+  return `LOCAL SERMON STARTER — NOT AI-GENERATED
+Passage: ${reference}
+Focus: ${focusLabel}
+Delivery guide: ${style}
+
+IMPORTANT: This is a structured starter outline. It is not a complete 15-minute sermon and is not a substitute for a chapter-aware sermon generated by a connected model.
+
+TITLE: Returning to God in Prayer
+
+OPENING — COME AS YOU ARE
+Begin by inviting the listener to slow down and come honestly before God. Prayer is not a performance for other people; it is a relationship in which we bring our attention, gratitude, confession, questions, and needs before the Lord. The aim is not to sound impressive but to become more attentive and faithful.
+
+READ THE PASSAGE
+${intro}
+
+MOVEMENT 1 — LET SCRIPTURE SHAPE OUR PRAYERS
+Read the full chapter slowly. Notice what the passage reveals about God's character, human need, obedience, trust, and hope. Do not pull a verse out of context to make it say what the chapter does not say. Ask: What does this text actually teach? What does it reveal about God? What response does it invite?
+
+MOVEMENT 2 — PRAYER IS ALSO FORMATION
+Spiritual growth is not only about asking God to change our circumstances. It also involves allowing Scripture to examine our priorities, motives, habits, and relationships. A mature prayer life makes room for thanksgiving, confession, listening, intercession, and willingness to obey. Growth is often steady and ordinary: returning to Scripture, forgiving, telling the truth, serving others, and asking for wisdom.
+
+MOVEMENT 3 — PRACTISE A SMALL, FAITHFUL RHYTHM
+Invite the listener to set aside a realistic daily time. Read a short portion of the chapter. Name one truth about God. Confess one area that needs attention. Pray for one person. Choose one practical act of obedience. Keep the practice honest rather than treating it as a scorecard. If a day is missed, begin again without pretending that failure is the end of the story.
+
+PERSONAL REFLECTION
+• What in this chapter draws my attention to God's character?
+• What am I carrying that I need to bring honestly to God?
+• Is there a response, habit, or relationship that Scripture calls me to address?
+• Who can I pray for and serve this week?
+
+APPLICATION FOR THIS WEEK
+Choose one sentence from the chapter to reread each morning. Write a brief prayer in your own words. At the end of the week, reflect on what you learned—not merely whether you felt something, but whether your choices are becoming more aligned with Scripture.
+
+CLOSING PRAYER
+God, teach me to come before You honestly and humbly. Help me listen to Your Word with care, recognise what this passage truly teaches, and respond with faith. Grow in me a patient, truthful, and loving spirit. Give me courage to confess what needs to change, wisdom to take the next faithful step, and compassion to pray for others. Keep me grounded in Scripture rather than in empty words. Amen.
+
+PREACHER'S PREPARATION CHECK
+Before presenting this as a finished sermon, read the entire chapter and its surrounding context, verify every interpretation and verse reference, and expand each movement with accurate observations from the passage. A connected AI backend is required to generate a genuinely passage-specific 15-minute manuscript.`;
+}
+
+$("generateSermonBtn").addEventListener("click", async () => {
+  const btn = $("generateSermonBtn");
+  btn.disabled = true;
+  btn.textContent = "Preparing…";
+
+  const book = $("bookSelect").value;
+  const chapter = Number($("chapterSelect").value);
+  const translation = $("translationSelect").value;
+
+  try {
+    const backend = await fetch(API_BASE + "/api/sermon", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        book,
+        chapter,
+        translation,
+        verses:currentVerses,
+        focus:$("sermonFocus").value,
+        profile:document.querySelector('input[name="profile"]:checked').value,
+        minutes:15
+      })
+    });
+
+    if (backend.ok) {
+      const data = await backend.json();
+      currentSermon = data.sermon || "";
+      if (!currentSermon) throw new Error("Backend returned an empty sermon.");
+
+      $("sermonTitle").textContent = data.title || "A life shaped by prayer";
+      $("sermonMeta").textContent = "15-minute sermon · AI";
+      msg("sermonMessage",
+        "Generated by the connected sermon backend. Verify interpretation and citations against Scripture.",
+        "success"
+      );
+    } else {
+      throw new Error("AI backend not configured");
+    }
+  } catch {
+    currentSermon = localSermon();
+    $("sermonTitle").textContent = "Returning to God in Prayer";
+    $("sermonMeta").textContent = "Local starter outline";
+    msg("sermonMessage",
+      "Backend unavailable. Showing a local starter outline—not a full AI-generated 15-minute sermon.",
+      "error"
+    );
+  }
+
+  $("sermonText").textContent = currentSermon;
+  $("sermonOutput").hidden = false;
+  btn.disabled = false;
+  btn.textContent = "Prepare 15-minute sermon";
+});
+
+$("copySermonBtn").addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(currentSermon);
+    msg("sermonMessage", "Sermon copied.", "success");
+  } catch {
+    msg("sermonMessage", "Clipboard access is unavailable in this browser.", "error");
+  }
+});
+
+$("saveSermonBtn").addEventListener("click", () => {
+  if (!currentSermon) return;
+
+  const n = readStore(STORE.notes, []);
+  n.unshift({
+    id:Date.now(),
+    title:$("sermonTitle").textContent,
+    body:currentSermon,
+    reference:chapterKey(),
+    date:new Date().toLocaleDateString()
+  });
+
+  writeStore(STORE.notes, n);
+  renderNotes();
+  msg("sermonMessage", "Sermon saved to your local notes.", "success");
+});
+
+$("downloadSermonBtn").addEventListener("click", () => {
+  const blob = new Blob([currentSermon], {type:"text/plain;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "elham-sermon.txt";
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+$("playAudioBtn").addEventListener("click", async () => {
+  const b = $("playAudioBtn");
+  b.disabled = true;
+  $("audioMessage").textContent = "Requesting audio from configured non-Google voice backend…";
+
+  try {
+    const res = await fetch(API_BASE + "/api/voice", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        text:currentSermon,
+        voice:document.querySelector('input[name="profile"]:checked').value
+      })
+    });
+
+    if (!res.ok) throw new Error("Voice backend is not configured.");
+
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const audio = $("sermonAudio");
+    audio.src = url;
+    audio.style.display = "block";
+    await audio.play();
+    $("audioMessage").textContent = "Playing generated audio from the connected voice backend.";
+  } catch {
+    $("audioMessage").textContent =
+      "No voice backend is connected. No Google TTS or device speech synthesis is used. Configure a licensed non-Google TTS service on the backend.";
+  } finally {
+    b.disabled = false;
+  }
+});
+
+$("stopAudioBtn").addEventListener("click", () => {
+  const a = $("sermonAudio");
+  a.pause();
+  a.currentTime = 0;
+});
+
+$("askQuestionBtn").addEventListener("click", async () => {
+  const question = $("questionInput").value.trim();
+  if (!question) {
+    msg("answerMessage", "Enter a question first.", "error");
+    return;
+  }
+
+  try {
+    const r = await fetch(API_BASE + "/api/ask", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        book:$("bookSelect").value,
+        chapter:Number($("chapterSelect").value),
+        translation:$("translationSelect").value,
+        verses:currentVerses,
+        question
+      })
+    });
+
+    if (!r.ok) throw new Error("No AI backend");
+
+    const d = await r.json();
+    $("answerOutput").textContent = d.answer || "No answer returned.";
+    msg("answerMessage", "Backend answer. Check cited verses in context.", "success");
+  } catch {
+    $("answerOutput").textContent =
+      `I can't generate a verified AI answer while the backend is disconnected. Start by reading ${chapterKey()} in full. As you read, note the verses that address your question, read the surrounding verses, and compare your interpretation with the chapter's main message.\n\nYour question: ${question}`;
+
+    msg("answerMessage", "Local guidance only—not an AI answer or a verified interpretation.", "error");
+  }
+});
+
+const PLAN = [
+  ["Day 1","Begin with honesty","Read a chapter slowly. Tell God honestly what is on your mind."],
+  ["Day 2","Give thanks","Name three things you are thankful for and why."],
+  ["Day 3","Confession and renewal","Ask what needs to change, and identify one practical next step."],
+  ["Day 4","Pray for someone","Pray for one person and consider a practical act of care."],
+  ["Day 5","Listen to Scripture","Reread a short passage; write one observation and one question."],
+  ["Day 6","Practise obedience","Choose one clear, loving action consistent with Scripture."],
+  ["Day 7","Reflect and continue","Review your notes and choose a realistic rhythm for next week."]
+];
+
+function renderPlan() {
+  const p = readStore(STORE.plan, {});
+  $("planList").innerHTML = PLAN.map((x,i) => `
+    <label class="saved-item row" style="align-items:flex-start">
+      <input type="checkbox" data-plan="${i}" ${p[i] ? "checked" : ""} style="width:auto;margin-top:4px">
+      <span><strong>${x[0]} · ${x[1]}</strong><p>${x[2]}</p></span>
+    </label>
+  `).join("");
+}
+
+$("planList").addEventListener("change", e => {
+  const c = e.target.closest("[data-plan]");
+  if (!c) return;
+  const p = readStore(STORE.plan, {});
+  p[c.dataset.plan] = c.checked;
+  writeStore(STORE.plan, p);
+});
+
+$("resetPlanBtn").addEventListener("click", () => {
+  writeStore(STORE.plan, {});
+  renderPlan();
+});
+
+async function checkBackend() {
+  try {
+    const r = await fetch(API_BASE + "/api/health");
+    if (r.ok) {
+      const d = await r.json();
+      $("connectionStatus").textContent = d.ai_configured
+        ? "AI backend connected"
+        : "Backend online · AI not configured";
+      return;
+    }
+  } catch {}
+
+  $("connectionStatus").textContent = "Local mode · no AI connected";
+}
+
+populateBooks();
+renderBookmarks();
+renderNotes();
+renderPlan();
+checkBackend();
+
+const last = readStore(STORE.last, null);
+if (last && BOOKS.some(b => b[0] === last.book)) {
+  currentBook = last.book;
+  currentChapter = last.chapter;
+  currentTranslation = last.translation;
+  populateBooks();
+}
+
+loadChapter();
+</script>
+</body>
+</html>
