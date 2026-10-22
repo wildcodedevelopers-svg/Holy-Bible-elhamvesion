@@ -6,12 +6,15 @@ import requests
 app = Flask(__name__)
 CORS(app)
 
-# Configure these as environment variables on your backend host.
-# Never put secret keys in index.html or commit them to GitHub.
+# Keep all secret keys in Render environment variables.
 LLM_BASE_URL = os.getenv("LLM_BASE_URL", "").rstrip("/")
 LLM_API_KEY = os.getenv("LLM_API_KEY", "")
 LLM_MODEL = os.getenv("LLM_MODEL", "")
-TTS_API_URL = os.getenv("TTS_API_URL", "")
+
+TTS_API_URL = os.getenv(
+    "TTS_API_URL",
+    "https://freetts.org/api/v1/tts"
+).rstrip("/")
 TTS_API_KEY = os.getenv("TTS_API_KEY", "")
 
 
@@ -26,20 +29,19 @@ def chat_completion(messages, max_tokens=2400, temperature=0.65):
             "LLM_API_KEY, and LLM_MODEL."
         )
 
-    url = LLM_BASE_URL + "/chat/completions"
-    headers = {
-        "Authorization": f"Bearer {LLM_API_KEY}",
-        "Content-Type": "application/json"
-    }
-    payload = {
-        "model": LLM_MODEL,
-        "messages": messages,
-        "temperature": temperature,
-        "max_tokens": max_tokens
-    }
-
     response = requests.post(
-        url, headers=headers, json=payload, timeout=180
+        LLM_BASE_URL + "/chat/completions",
+        headers={
+            "Authorization": f"Bearer {LLM_API_KEY}",
+            "Content-Type": "application/json"
+        },
+        json={
+            "model": LLM_MODEL,
+            "messages": messages,
+            "temperature": temperature,
+            "max_tokens": max_tokens
+        },
+        timeout=180
     )
     response.raise_for_status()
     data = response.json()
@@ -71,7 +73,7 @@ def health():
     return jsonify({
         "ok": True,
         "ai_configured": ai_configured(),
-        "voice_configured": bool(TTS_API_URL)
+        "voice_configured": bool(TTS_API_URL and TTS_API_KEY)
     })
 
 
@@ -106,7 +108,10 @@ def sermon():
             "elham": (
                 "Use gentle, reflective, Scripture-centred teaching and a prayerful tone."
             )
-        }.get(profile, "Use a clear, compassionate, Scripture-centred teaching style.")
+        }.get(
+            profile,
+            "Use a clear, compassionate, Scripture-centred teaching style."
+        )
 
         system = (
             "You are the sermon-writing component of ELHAM STUDIOS. Write original "
@@ -176,6 +181,7 @@ SUPPLIED CHAPTER TEXT:
         }), 502
 
     except Exception as exc:
+        app.logger.exception("Sermon generation failed")
         return jsonify({"error": str(exc)}), 503
 
 
@@ -232,56 +238,99 @@ Answer clearly and concisely, with verse references from the supplied text only.
         }), 502
 
     except Exception as exc:
+        app.logger.exception("Bible Q&A failed")
         return jsonify({"error": str(exc)}), 503
 
 
 @app.post("/api/voice")
 def voice():
-    if not TTS_API_URL:
+    if not TTS_API_KEY:
         return jsonify({
-            "error": (
-                "No non-Google TTS provider is configured. Set TTS_API_URL "
-                "to a licensed service endpoint that accepts JSON {text, voice} "
-                "and returns audio bytes."
-            )
+            "error": "Set TTS_API_KEY in Render environment variables."
         }), 503
 
     payload = request.get_json(silent=True) or {}
     text = str(payload.get("text", "")).strip()
-    voice = str(payload.get("voice", "elham"))[:80]
+    voice_name = str(
+        payload.get("voice", "en-US-GuyNeural")
+    )[:80]
 
     if not text:
         return jsonify({"error": "Text is required."}), 400
 
-    headers = {"Content-Type": "application/json"}
-    if TTS_API_KEY:
-        headers["Authorization"] = f"Bearer {TTS_API_KEY}"
+    # Start with short tests to stay within the provider's free limits.
+    if len(text) > 1000:
+        return jsonify({
+            "error": "For now, voice requests are limited to 1,000 characters."
+        }), 400
 
     try:
+        # Step 1: Ask FreeTTS to generate the speech.
         response = requests.post(
             TTS_API_URL,
-            headers=headers,
-            json={"text": text, "voice": voice},
-            timeout=240
+            headers={
+                "Content-Type": "application/json",
+                "x-api-key": TTS_API_KEY
+            },
+            json={
+                "text": text,
+                "voice": voice_name,
+                "rate": "-10%",
+                "pitch": "+0Hz",
+                "output_format": "mp3"
+            },
+            timeout=120
         )
         response.raise_for_status()
 
-        content_type = response.headers.get(
-            "Content-Type", "audio/mpeg"
-        )
+        data = response.json()
+        file_id = data.get("file_id")
 
-        if "audio" not in content_type and "octet-stream" not in content_type:
+        if not file_id:
             return jsonify({
-                "error": (
-                    "TTS endpoint did not return audio. Configure an endpoint "
-                    "that returns audio bytes."
-                )
+                "error": "FreeTTS did not return an audio file ID."
             }), 502
 
-        return Response(response.content, content_type=content_type)
+        # Step 2: Retrieve the generated MP3.
+        audio_response = requests.get(
+            f"https://freetts.org/api/audio/{file_id}",
+            timeout=120
+        )
+        audio_response.raise_for_status()
 
-    except requests.RequestException as exc:
-        return jsonify({"error": f"TTS request failed: {exc}"}), 502
+        content_type = audio_response.headers.get(
+            "Content-Type", ""
+        ).lower()
+
+        if (
+            "audio" not in content_type
+            and "octet-stream" not in content_type
+        ):
+            return jsonify({
+                "error": "FreeTTS did not return a valid audio file."
+            }), 502
+
+        return Response(
+            audio_response.content,
+            content_type="audio/mpeg"
+        )
+
+    except requests.HTTPError as exc:
+        status = (
+            exc.response.status_code
+            if exc.response is not None else 502
+        )
+        app.logger.warning("FreeTTS returned HTTP %s", status)
+        return jsonify({
+            "error": "FreeTTS rejected the voice request.",
+            "provider_status": status
+        }), 502
+
+    except (requests.RequestException, ValueError) as exc:
+        app.logger.warning("Voice request failed: %s", type(exc).__name__)
+        return jsonify({
+            "error": "Could not generate or retrieve the audio. Try again."
+        }), 502
 
 
 if __name__ == "__main__":
