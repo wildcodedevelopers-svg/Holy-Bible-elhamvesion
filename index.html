@@ -2,94 +2,76 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f6f4ed">
 <title>HOLY BIBLE_ELHAM VERSION</title>
-
 <style>
-:root {
-  --bg:#f6f4ed;--paper:#fffefa;--sage:#627965;
-  --sage-dark:#405b47;--sage-light:#e8eee5;--gold:#b59a5b;
-  --ink:#28332a;--muted:#72796f;--border:#e2e3d9;
-  --danger:#9d4d45;--shadow:0 8px 28px rgba(48,62,48,.07)
-}
+:root{--bg:#f6f4ed;--paper:#fffefa;--sage:#627965;--dark:#405b47;--light:#e8eee5;--gold:#b59a5b;--ink:#28332a;--muted:#72796f;--border:#e2e3d9;--danger:#9d4d45}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.65}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Georgia,serif}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 button:disabled{opacity:.6;cursor:wait}
 [hidden]{display:none!important}
-header{text-align:center;padding:26px 18px 18px;background:var(--paper);border-bottom:1px solid var(--border)}
-.brand{display:flex;flex-direction:column;align-items:center;gap:8px;font:700 11px Arial,sans-serif;letter-spacing:2px;color:var(--sage-dark)}
-.bible-icon{font-size:38px;line-height:1.2}
-header h1{font-size:clamp(27px,7vw,40px);font-weight:400;margin:9px 0 2px}
+header{text-align:center;padding:24px 15px 18px;background:var(--paper);border-bottom:1px solid var(--border)}
+.brand{font:700 11px Arial,sans-serif;letter-spacing:2px;color:var(--dark)}
+.bible-icon{display:block;font-size:38px}
+header h1{font-size:clamp(27px,7vw,40px);font-weight:400;margin:8px 0}
 header p{margin:0;color:var(--muted);font-size:14px}
-nav{position:sticky;top:0;z-index:20;display:flex;overflow-x:auto;gap:7px;padding:10px;background:rgba(255,254,250,.97);border-bottom:1px solid var(--border);scrollbar-width:none}
-nav button{flex:0 0 auto;padding:10px 14px;border:1px solid transparent;border-radius:30px;background:transparent;color:var(--muted);font:13px Arial,sans-serif}
-nav button.active{background:var(--sage-light);border-color:#d5dfd1;color:var(--sage-dark)}
-main{width:min(850px,100%);margin:0 auto;padding:20px 15px 100px}
-section.page{display:none}
-section.page.active{display:block}
+nav{position:sticky;top:0;z-index:20;display:flex;overflow-x:auto;gap:6px;padding:9px;background:#fffefaf5;border-bottom:1px solid var(--border)}
+nav button{flex:0 0 auto;padding:10px 13px;border:1px solid transparent;border-radius:25px;background:none;color:var(--muted);font:13px Arial}
+nav button.active{background:var(--light);border-color:#d5dfd1;color:var(--dark)}
+main{width:min(850px,100%);margin:auto;padding:20px 14px 100px}
+.page{display:none}.page.active{display:block}
 h2{font-size:27px;font-weight:400;margin:0 0 5px}
-h3{font-size:19px;font-weight:400;margin:20px 0 8px}
-.subtitle{margin:0 0 20px;color:var(--muted);font-size:14px}
-.card{background:var(--paper);border:1px solid var(--border);border-radius:17px;padding:19px;margin:15px 0;box-shadow:var(--shadow);min-width:0}
-label{display:block;font:13px Arial,sans-serif;color:var(--sage-dark);margin:12px 0 5px}
-input,select,textarea{width:100%;min-width:0;padding:12px;border:1px solid var(--border);border-radius:10px;color:var(--ink);background:#fff;outline:none}
-input:focus,select:focus,textarea:focus{border-color:var(--sage);box-shadow:0 0 0 3px rgba(98,121,101,.1)}
-input[type=range]{padding:0;accent-color:var(--sage)}
-textarea{min-height:120px;resize:vertical}
-.btn{display:inline-flex;justify-content:center;align-items:center;gap:7px;border:1px solid var(--sage);border-radius:30px;padding:11px 17px;margin-top:12px;background:var(--sage);color:white;font:13px Arial,sans-serif}
-.btn.secondary{color:var(--sage-dark);background:transparent}
-.btn.gold{background:var(--gold);border-color:var(--gold);color:white}
+h3{font-size:19px;font-weight:400;margin:17px 0 8px}
+.subtitle{color:var(--muted);font-size:14px;margin:0 0 18px}
+.card{background:var(--paper);border:1px solid var(--border);border-radius:16px;padding:18px;margin:14px 0;box-shadow:0 8px 28px #303e300b;min-width:0}
+label{display:block;font:13px Arial,sans-serif;color:var(--dark);margin:12px 0 5px}
+input,select,textarea{width:100%;min-width:0;padding:12px;border:1px solid var(--border);border-radius:10px;background:white;color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:2px solid #62796540;border-color:var(--sage)}
+input[type=range],input[type=checkbox]{width:auto;accent-color:var(--sage)}
+textarea{min-height:110px;resize:vertical}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;margin-top:10px;padding:10px 15px;border:1px solid var(--sage);border-radius:25px;background:var(--sage);color:white;font:13px Arial,sans-serif}
+.btn.secondary{background:transparent;color:var(--dark)}
+.btn.gold{background:var(--gold);border-color:var(--gold)}
 .btn.danger{background:transparent;border-color:#e3c8c4;color:var(--danger)}
-.button-row{display:flex;flex-wrap:wrap;gap:8px}
-.small-note{color:var(--muted);font:12px Arial,sans-serif;margin-top:10px;overflow-wrap:anywhere}
-.status{font:13px Arial,sans-serif;margin-top:10px;color:var(--sage-dark);overflow-wrap:anywhere}
+.button-row{display:flex;flex-wrap:wrap;gap:7px}
+.small-note{font:12px/1.5 Arial,sans-serif;color:var(--muted);margin-top:8px;overflow-wrap:anywhere}
+.status{font:13px/1.5 Arial,sans-serif;color:var(--dark);margin-top:10px;overflow-wrap:anywhere}
 .status.error{color:var(--danger)}
-.scripture{overflow-wrap:anywhere;font-size:17px;line-height:1.9}
-.verse-number{color:var(--gold);font:11px Arial,sans-serif;vertical-align:super;margin-right:5px}
-.verse{padding:9px 7px;border-radius:8px;margin:3px 0;cursor:pointer;transition:background .15s;border:1px solid transparent;scroll-margin-top:100px;-webkit-tap-highlight-color:transparent}
-.verse:active{background:var(--sage-light)}
+.scripture{font-size:17px;line-height:1.9;overflow-wrap:anywhere}
+.verse{padding:8px 7px;margin:3px 0;border:1px solid transparent;border-radius:8px;scroll-margin-top:100px;cursor:pointer}
+.verse-number{font:11px Arial,sans-serif;color:var(--gold);vertical-align:super;margin-right:5px}
 .verse.selected{outline:2px solid var(--sage);outline-offset:-2px}
-.verse.highlight-yellow{background:#fff0a8}
-.verse.highlight-green{background:#cce8c8}
-.verse.highlight-blue{background:#cfe5ff}
-.verse.highlight-pink{background:#ffd8e6}
-.verse.highlight-purple{background:#e8d9ff}
-.verse.highlight-orange{background:#ffdfbd}
-.reader-tools{border-top:1px solid var(--border);padding-top:14px;margin-top:16px}
-#verseTools.floating-verse-tools{position:fixed;z-index:100;width:min(430px,calc(100vw - 20px));max-height:min(65vh,480px);overflow-y:auto;overscroll-behavior:contain;padding:14px;margin:0;background:var(--paper);border:1px solid var(--border);border-radius:16px;box-shadow:0 12px 38px rgba(30,45,30,.24)}
-#verseTools .color-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
-.color-choice{width:35px;height:35px;flex:0 0 35px;border-radius:50%;border:2px solid rgba(0,0,0,.15);padding:0;margin:0}
-.color-choice[aria-pressed=true]{outline:3px solid var(--sage-dark);outline-offset:2px}
-.color-yellow{background:#ffe477}.color-green{background:#a9dba1}
-.color-blue{background:#9fcaff}.color-pink{background:#ffb8d1}
-.color-purple{background:#d2b6ff}.color-orange{background:#ffc68e}
-#verseTools .button-row{gap:5px}
-#verseTools .btn{padding:9px 11px;margin-top:8px;font-size:12px}
-.audio-panel{background:var(--sage-light);padding:14px;border-radius:13px;margin-top:16px}
-.audio-panel label{margin-top:8px}
-.audio-panel .button-row{gap:5px}
-.audio-panel .btn{padding:10px 13px}
+.highlight-yellow{background:#fff0a8}.highlight-green{background:#cce8c8}.highlight-blue{background:#cfe5ff}.highlight-pink{background:#ffd8e6}.highlight-purple{background:#e8d9ff}.highlight-orange{background:#ffdfbd}
+.reader-tools{border-top:1px solid var(--border);padding-top:12px;margin-top:15px}
+#verseTools.floating{position:fixed;z-index:100;width:min(430px,calc(100vw - 20px));max-height:65vh;overflow-y:auto;padding:14px;margin:0;background:var(--paper);border:1px solid var(--border);border-radius:15px;box-shadow:0 12px 38px #1e2d1e40}
+.color-row{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.color-choice{width:33px;height:33px;padding:0;border:2px solid #0002;border-radius:50%}
+.color-choice[aria-pressed=true]{outline:3px solid var(--dark);outline-offset:2px}
+.color-yellow{background:#ffe477}.color-green{background:#a9dba1}.color-blue{background:#9fcaff}.color-pink{background:#ffb8d1}.color-purple{background:#d2b6ff}.color-orange{background:#ffc68e}
+#verseTools .btn{padding:9px 11px;font-size:12px}
+.audio-panel{background:var(--light);padding:14px;border-radius:12px;margin-top:15px}
+.audio-panel .btn{padding:9px 12px}
 .saved-item{border-top:1px solid var(--border);padding:14px 0;overflow-wrap:anywhere}
 .saved-item:first-child{border-top:0}
 .saved-item h3{margin:0 0 4px}
-.saved-item p{white-space:pre-wrap;overflow-wrap:anywhere;margin:7px 0}
+.saved-item p{white-space:pre-wrap;overflow-wrap:anywhere}
 .day{display:flex;align-items:flex-start;gap:12px}
-.day input[type=checkbox]{width:19px;height:19px;margin-top:6px;accent-color:var(--sage)}
+.day input{margin-top:7px;width:19px;height:19px;flex-shrink:0}
 .day label{margin:0;color:var(--ink);font:15px Georgia,serif}
-.floating-audio{position:fixed;right:16px;bottom:max(18px,env(safe-area-inset-bottom));z-index:50;border-radius:999px;padding:14px 20px;box-shadow:0 8px 28px rgba(73,99,78,.3);max-width:calc(100vw - 32px)}
-footer{padding:25px 15px;text-align:center;color:var(--muted);font:11px Arial,sans-serif;letter-spacing:.5px}
+.day .small-note{cursor:pointer}
 .output{white-space:pre-wrap;overflow-wrap:anywhere}
-@media(min-width:650px){main{padding-top:28px}.card{padding:24px}}
-@media(max-width:480px){#verseTools .color-choice{width:32px;height:32px;flex-basis:32px}}
+.floating-audio{position:fixed;right:15px;bottom:max(16px,env(safe-area-inset-bottom));z-index:50;box-shadow:0 8px 28px #49634e40}
+footer{text-align:center;padding:25px 15px;color:var(--muted);font:11px Arial,sans-serif}
+@media(min-width:650px){main{padding-top:28px}.card{padding:23px}}
 </style>
 </head>
-
 <body>
+
 <header>
-  <div class="brand"><span class="bible-icon">📖</span><span>HOLY BIBLE_ELHAM VERSION</span></div>
+  <div class="brand"><span class="bible-icon">📖</span>HOLY BIBLE_ELHAM VERSION</div>
   <h1>Rooted in the Word</h1>
   <p>A quiet space for Scripture, reflection, and growth.</p>
 </header>
@@ -107,41 +89,36 @@ footer{padding:25px 15px;text-align:center;color:var(--muted);font:11px Arial,sa
 <section class="page active" id="reader">
   <h2>Bible Reader</h2>
   <p class="subtitle">Read slowly. Reflect deeply. Let the Word speak.</p>
-
   <div class="card">
     <label for="translation">Translation</label>
     <select id="translation">
       <option value="web">World English Bible (WEB)</option>
       <option value="kjv">King James Version (KJV)</option>
     </select>
-
-    <label for="bookSelect">Choose a Bible book</label>
+    <label for="bookSelect">Bible book</label>
     <select id="bookSelect"></select>
-
-    <label for="chapterSelect">Choose a chapter</label>
+    <label for="chapterSelect">Chapter</label>
     <select id="chapterSelect"></select>
     <button class="btn" id="readChapterBtn">Read selected chapter</button>
-
-    <label for="reference">Or type a passage or reference</label>
-    <input id="reference" value="John 3:16" placeholder="e.g. Psalm 23 or John 3:16">
+    <label for="reference">Or enter a passage</label>
+    <input id="reference" value="John 3:16" placeholder="John 3:16 or Psalm 23">
     <button class="btn secondary" id="loadBibleBtn">Read passage</button>
     <div class="status" id="readerMessage" role="status"></div>
   </div>
 
   <div class="card" id="bibleOutput" hidden>
     <h3 id="bibleTitle">Scripture</h3>
-    <p class="small-note">Tap a verse to select it. Highlight, bookmark, or listen using the floating toolbar.</p>
+    <p class="small-note">Tap a verse to highlight, bookmark, or listen.</p>
     <div class="scripture" id="bibleText"></div>
-
     <div class="reader-tools" id="verseTools" hidden>
-      <strong id="selectedVerseLabel">Selected verse</strong>
-      <div class="color-row" aria-label="Highlight colours">
-        <button class="color-choice color-yellow" data-color="yellow" aria-label="Yellow highlight" aria-pressed="false"></button>
-        <button class="color-choice color-green" data-color="green" aria-label="Green highlight" aria-pressed="false"></button>
-        <button class="color-choice color-blue" data-color="blue" aria-label="Blue highlight" aria-pressed="false"></button>
-        <button class="color-choice color-pink" data-color="pink" aria-label="Pink highlight" aria-pressed="false"></button>
-        <button class="color-choice color-purple" data-color="purple" aria-label="Purple highlight" aria-pressed="false"></button>
-        <button class="color-choice color-orange" data-color="orange" aria-label="Orange highlight" aria-pressed="false"></button>
+      <strong id="selectedVerseLabel"></strong>
+      <div class="color-row">
+        <button class="color-choice color-yellow" data-color="yellow" aria-label="Yellow" aria-pressed="false"></button>
+        <button class="color-choice color-green" data-color="green" aria-label="Green" aria-pressed="false"></button>
+        <button class="color-choice color-blue" data-color="blue" aria-label="Blue" aria-pressed="false"></button>
+        <button class="color-choice color-pink" data-color="pink" aria-label="Pink" aria-pressed="false"></button>
+        <button class="color-choice color-purple" data-color="purple" aria-label="Purple" aria-pressed="false"></button>
+        <button class="color-choice color-orange" data-color="orange" aria-label="Orange" aria-pressed="false"></button>
       </div>
       <div class="button-row">
         <button class="btn secondary" id="removeHighlightBtn">Remove highlight</button>
@@ -150,10 +127,9 @@ footer{padding:25px 15px;text-align:center;color:var(--muted);font:11px Arial,sa
       </div>
       <button class="btn secondary" id="closeVerseToolsBtn">Close toolbar</button>
     </div>
-
     <div class="audio-panel">
       <strong>🔊 Audio Bible</strong>
-      <p class="small-note">Listen to the passage or selected verse using your device's speech voice.</p>
+      <p class="small-note">Uses the speech voice available on your device.</p>
       <div class="button-row">
         <button class="btn gold" id="playBibleBtn">▶ Play passage</button>
         <button class="btn secondary" id="pauseBibleBtn">Ⅱ Pause</button>
@@ -161,17 +137,16 @@ footer{padding:25px 15px;text-align:center;color:var(--muted);font:11px Arial,sa
         <button class="btn secondary" id="stopBibleBtn">■ Stop</button>
       </div>
       <label for="bibleVolume">Volume: <span id="volumeValue">100%</span></label>
-      <input type="range" id="bibleVolume" min="0" max="1" step="0.1" value="1">
+      <input type="range" id="bibleVolume" min="0" max="1" step=".1" value="1">
       <label for="bibleRate">Reading speed</label>
       <select id="bibleRate">
-        <option value="0.75">Slow</option>
-        <option value="0.9" selected>Normal</option>
+        <option value=".75">Slow</option>
+        <option value=".9" selected>Normal</option>
         <option value="1">Natural</option>
         <option value="1.2">Fast</option>
       </select>
-      <div class="status" id="bibleAudioMessage" role="status">Load a passage, then press Play passage.</div>
+      <div class="status" id="bibleAudioMessage" role="status">Load a passage, then press Play.</div>
     </div>
-
     <div class="button-row">
       <button class="btn secondary" id="bookmarkPassageBtn">☆ Bookmark passage</button>
       <button class="btn secondary" id="notePassageBtn">✎ Reflect on passage</button>
@@ -183,12 +158,9 @@ footer{padding:25px 15px;text-align:center;color:var(--muted);font:11px Arial,sa
   <h2>Reflection Journal</h2>
   <p class="subtitle">Write honestly. Keep the lessons that matter.</p>
   <div class="card">
-    <label for="noteTitle">Title</label>
-    <input id="noteTitle" placeholder="What is on your heart?">
-    <label for="noteReference">Scripture reference (optional)</label>
-    <input id="noteReference" placeholder="e.g. Proverbs 3:5-6">
-    <label for="noteBody">Your reflection</label>
-    <textarea id="noteBody" placeholder="What did you learn? What will you put into practice?"></textarea>
+    <label for="noteTitle">Title</label><input id="noteTitle" placeholder="What is on your heart?">
+    <label for="noteReference">Scripture reference</label><input id="noteReference" placeholder="Proverbs 3:5-6">
+    <label for="noteBody">Reflection</label><textarea id="noteBody" placeholder="What did you learn? What will you practise?"></textarea>
     <div class="button-row">
       <button class="btn" id="saveNoteBtn">Save reflection</button>
       <button class="btn secondary" id="clearNoteBtn">Clear fields</button>
@@ -202,10 +174,8 @@ footer{padding:25px 15px;text-align:center;color:var(--muted);font:11px Arial,sa
   <h2>Sermon Studio</h2>
   <p class="subtitle">Prepare a Scripture-centred sermon for personal study.</p>
   <div class="card">
-    <label for="sermonTopic">Sermon topic</label>
-    <input id="sermonTopic" placeholder="e.g. Trusting God in difficult seasons">
-    <label for="sermonPassage">Main Scripture</label>
-    <input id="sermonPassage" placeholder="e.g. Romans 8:28">
+    <label for="sermonTopic">Topic</label><input id="sermonTopic" placeholder="Trusting God in difficult seasons">
+    <label for="sermonPassage">Main Scripture</label><input id="sermonPassage" placeholder="Romans 8:28">
     <label for="sermonAudience">Audience</label>
     <select id="sermonAudience">
       <option value="general congregation">General congregation</option>
@@ -213,7 +183,7 @@ footer{padding:25px 15px;text-align:center;color:var(--muted);font:11px Arial,sa
       <option value="personal devotion">Personal devotion</option>
       <option value="Bible study group">Bible study group</option>
     </select>
-    <label for="sermonLength">Sermon length</label>
+    <label for="sermonLength">Length</label>
     <select id="sermonLength">
       <option value="short">Short study</option>
       <option value="15-minute">Approximately 15 minutes</option>
@@ -223,15 +193,14 @@ footer{padding:25px 15px;text-align:center;color:var(--muted);font:11px Arial,sa
     <div class="status" id="sermonMessage" role="status"></div>
   </div>
   <div class="card" id="sermonOutput" hidden>
-    <h3>Your sermon</h3>
-    <div class="output" id="sermonText"></div>
+    <h3>Your sermon</h3><div class="output" id="sermonText"></div>
     <div class="button-row">
       <button class="btn gold" id="playAudioBtn">Play generated audio</button>
       <button class="btn secondary" id="stopAudioBtn">Stop audio</button>
       <button class="btn secondary" id="saveSermonBtn">Save to journal</button>
     </div>
     <audio id="sermonAudio" controls preload="none" style="width:100%;display:none;margin-top:15px"></audio>
-    <div class="small-note" id="audioMessage" role="status">Generate a sermon first, then play its audio.</div>
+    <div class="small-note" id="audioMessage" role="status"></div>
   </div>
 </section>
 
@@ -239,10 +208,8 @@ footer{padding:25px 15px;text-align:center;color:var(--muted);font:11px Arial,sa
   <h2>Ask Scripture</h2>
   <p class="subtitle">Explore biblical questions with care and context.</p>
   <div class="card">
-    <label for="questionInput">Your question</label>
-    <textarea id="questionInput" placeholder="What does the Bible teach about forgiveness?"></textarea>
-    <label for="questionPassage">Relevant passage (optional)</label>
-    <input id="questionPassage" placeholder="e.g. Matthew 6:14-15">
+    <label for="questionInput">Your question</label><textarea id="questionInput" placeholder="What does the Bible teach about forgiveness?"></textarea>
+    <label for="questionPassage">Relevant passage (optional)</label><input id="questionPassage" placeholder="Matthew 6:14-15">
     <button class="btn" id="askBtn">Explore Scripture</button>
     <div class="status" id="askMessage" role="status"></div>
   </div>
@@ -251,12 +218,8 @@ footer{padding:25px 15px;text-align:center;color:var(--muted);font:11px Arial,sa
 
 <section class="page" id="plan">
   <h2>Reading Plan</h2>
-  <p class="subtitle">A simple seven-day journey through faith and trust.</p>
-  <div class="card">
-    <div id="readingDays"></div>
-    <div class="status" id="planMessage" role="status"></div>
-    <p class="small-note">Your completed days are saved on this device.</p>
-  </div>
+  <p class="subtitle">A seven-day journey through faith and trust.</p>
+  <div class="card"><div id="readingDays"></div><div class="status" id="planMessage"></div></div>
 </section>
 
 <section class="page" id="bookmarks">
@@ -272,393 +235,319 @@ footer{padding:25px 15px;text-align:center;color:var(--muted);font:11px Arial,sa
 <script>
 "use strict";
 
-const API_BASE = "https://elham-studios-backend.onrender.com";
-const $ = id => document.getElementById(id);
+const API_BASE="https://elham-studios-backend.onrender.com";
+const $=id=>document.getElementById(id);
 
-const bibleBooks = [
- ["Genesis",50],["Exodus",40],["Leviticus",27],["Numbers",36],
- ["Deuteronomy",34],["Joshua",24],["Judges",21],["Ruth",4],
- ["1 Samuel",31],["2 Samuel",24],["1 Kings",22],["2 Kings",25],
- ["1 Chronicles",29],["2 Chronicles",36],["Ezra",10],["Nehemiah",13],
- ["Esther",10],["Job",42],["Psalms",150],["Proverbs",31],
- ["Ecclesiastes",12],["Song of Solomon",8],["Isaiah",66],
- ["Jeremiah",52],["Lamentations",5],["Ezekiel",48],["Daniel",12],
- ["Hosea",14],["Joel",3],["Amos",9],["Obadiah",1],["Jonah",4],
- ["Micah",7],["Nahum",3],["Habakkuk",3],["Zephaniah",3],
- ["Haggai",2],["Zechariah",14],["Malachi",4],["Matthew",28],
- ["Mark",16],["Luke",24],["John",21],["Acts",28],["Romans",16],
- ["1 Corinthians",16],["2 Corinthians",13],["Galatians",6],
- ["Ephesians",6],["Philippians",4],["Colossians",4],
- ["1 Thessalonians",5],["2 Thessalonians",3],["1 Timothy",6],
- ["2 Timothy",4],["Titus",3],["Philemon",1],["Hebrews",13],
- ["James",5],["1 Peter",5],["2 Peter",3],["1 John",5],
- ["2 John",1],["3 John",1],["Jude",1],["Revelation",22]
+const bibleBooks=[
+["Genesis",50],["Exodus",40],["Leviticus",27],["Numbers",36],["Deuteronomy",34],["Joshua",24],["Judges",21],["Ruth",4],["1 Samuel",31],["2 Samuel",24],["1 Kings",22],["2 Kings",25],["1 Chronicles",29],["2 Chronicles",36],["Ezra",10],["Nehemiah",13],["Esther",10],["Job",42],["Psalms",150],["Proverbs",31],["Ecclesiastes",12],["Song of Solomon",8],["Isaiah",66],["Jeremiah",52],["Lamentations",5],["Ezekiel",48],["Daniel",12],["Hosea",14],["Joel",3],["Amos",9],["Obadiah",1],["Jonah",4],["Micah",7],["Nahum",3],["Habakkuk",3],["Zephaniah",3],["Haggai",2],["Zechariah",14],["Malachi",4],["Matthew",28],["Mark",16],["Luke",24],["John",21],["Acts",28],["Romans",16],["1 Corinthians",16],["2 Corinthians",13],["Galatians",6],["Ephesians",6],["Philippians",4],["Colossians",4],["1 Thessalonians",5],["2 Thessalonians",3],["1 Timothy",6],["2 Timothy",4],["Titus",3],["Philemon",1],["Hebrews",13],["James",5],["1 Peter",5],["2 Peter",3],["1 John",5],["2 John",1],["3 John",1],["Jude",1],["Revelation",22]
 ];
 
-let currentSermon = "";
-let currentPassage = "";
-let currentVerses = [];
-let selectedVerse = null;
-let audioRunId = 0;
-let activeAudioUrl = null;
+const KEYS={
+  bookmarks:"elhamBookmarks",
+  highlights:"elhamHighlights",
+  notes:"elhamNotes",
+  plan:"elhamPlan"
+};
 
-function readStore(key, fallback = []) {
-  try {
-    const value = JSON.parse(localStorage.getItem(key) || "null");
-    return value === null ? fallback : value;
-  } catch { return fallback; }
+let currentPassage="";
+let currentVerses=[];
+let selectedVerse=null;
+let currentSermon="";
+let audioRunId=0;
+let activeAudioUrl=null;
+let audioUrls=new Set();
+let audioChunks=[];
+let audioChunkIndex=0;
+
+function readStore(key,fallback=[]){
+  try{
+    const value=JSON.parse(localStorage.getItem(key)||"null");
+    return value===null?fallback:value;
+  }catch{return fallback;}
 }
 
-function writeStore(key, value) {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
+function writeStore(key,value){
+  try{
+    localStorage.setItem(key,JSON.stringify(value));
     return true;
-  } catch { return false; }
+  }catch{
+    alert("Device storage is full or unavailable. Your change was not saved.");
+    return false;
+  }
 }
 
-function setStatus(id, message, error = false) {
-  const element = $(id);
-  element.textContent = message;
-  element.classList.toggle("error", error);
+function setStatus(id,message,error=false){
+  $(id).textContent=message;
+  $(id).classList.toggle("error",error);
 }
 
-async function postJSON(path, payload) {
-  const response = await fetch(API_BASE + path, {
+function safeText(value){return String(value??"");}
+
+async function postJSON(path,payload){
+  const response=await fetch(API_BASE+path,{
     method:"POST",
     headers:{"Content-Type":"application/json"},
     body:JSON.stringify(payload)
   });
-  const data = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(data.error || data.message || `Request failed (HTTP ${response.status}).`);
+  const data=await response.json().catch(()=>({}));
+  if(!response.ok)throw new Error(data.error||data.message||`Request failed (HTTP ${response.status}).`);
   return data;
 }
 
-function getResponseText(data) {
-  if (typeof data === "string") return data;
-  for (const key of ["sermon","answer","response","text","content","result"]) {
-    if (typeof data?.[key] === "string" && data[key].trim()) return data[key];
+function getResponseText(data){
+  if(typeof data==="string")return data;
+  for(const key of ["sermon","answer","response","text","content","result"]){
+    if(typeof data?.[key]==="string"&&data[key].trim())return data[key];
   }
-  return data?.choices?.[0]?.message?.content || "";
+  return data?.choices?.[0]?.message?.content||"";
 }
 
 /* Navigation */
-document.querySelectorAll("nav button[data-page]").forEach(button => {
-  button.addEventListener("click", () => {
-    document.querySelectorAll("nav button").forEach(item =>
-      item.classList.toggle("active", item === button)
-    );
-    document.querySelectorAll("section.page").forEach(page =>
-      page.classList.toggle("active", page.id === button.dataset.page)
-    );
-    closeVerseToolbar();
-    if (button.dataset.page === "notes") renderNotes();
-    if (button.dataset.page === "bookmarks") renderBookmarks();
+function openPage(pageId){
+  document.querySelectorAll("nav button[data-page]").forEach(button=>{
+    button.classList.toggle("active",button.dataset.page===pageId);
   });
+  document.querySelectorAll("section.page").forEach(page=>{
+    page.classList.toggle("active",page.id===pageId);
+  });
+  closeVerseToolbar();
+  if(pageId==="notes")renderNotes();
+  if(pageId==="bookmarks")renderBookmarks();
+}
+document.querySelectorAll("nav button[data-page]").forEach(button=>{
+  button.addEventListener("click",()=>openPage(button.dataset.page));
 });
 
-function openPage(pageId) {
-  document.querySelector(`nav button[data-page="${pageId}"]`)?.click();
-}
-
-/* Book and chapter selectors */
-function initialiseBibleSelectors() {
-  const bookSelect = $("bookSelect");
-  const chapterSelect = $("chapterSelect");
-
-  bibleBooks.forEach(([name]) => {
-    const option = document.createElement("option");
-    option.value = name;
-    option.textContent = name;
+/* Bible selectors */
+function initialiseBibleSelectors(){
+  const bookSelect=$("bookSelect");
+  bibleBooks.forEach(([name])=>{
+    const option=document.createElement("option");
+    option.value=name;
+    option.textContent=name;
     bookSelect.appendChild(option);
   });
 
-  function updateChapters() {
-    const book = bibleBooks.find(([name]) => name === bookSelect.value);
-    chapterSelect.replaceChildren();
-
-    for (let chapter = 1; chapter <= (book?.[1] || 1); chapter++) {
-      const option = document.createElement("option");
-      option.value = String(chapter);
-      option.textContent = `Chapter ${chapter}`;
-      chapterSelect.appendChild(option);
+  function updateChapters(){
+    const book=bibleBooks.find(([name])=>name===bookSelect.value);
+    $("chapterSelect").replaceChildren();
+    for(let n=1;n<=(book?.[1]||1);n++){
+      const option=document.createElement("option");
+      option.value=String(n);
+      option.textContent="Chapter "+n;
+      $("chapterSelect").appendChild(option);
     }
   }
 
-  bookSelect.addEventListener("change", updateChapters);
-
-  $("readChapterBtn").addEventListener("click", () => {
-    $("reference").value = `${bookSelect.value} ${chapterSelect.value}`;
+  bookSelect.addEventListener("change",updateChapters);
+  $("readChapterBtn").addEventListener("click",()=>{
+    $("reference").value=`${bookSelect.value} ${$("chapterSelect").value}`;
     loadBible();
   });
-
-  chapterSelect.addEventListener("change", () => {
-    $("reference").value = `${bookSelect.value} ${chapterSelect.value}`;
+  $("chapterSelect").addEventListener("change",()=>{
+    $("reference").value=`${bookSelect.value} ${$("chapterSelect").value}`;
   });
-
-  bookSelect.value = "John";
+  bookSelect.value="John";
   updateChapters();
-  chapterSelect.value = "3";
+  $("chapterSelect").value="3";
 }
 
-/* Bible reader */
-$("loadBibleBtn").addEventListener("click", loadBible);
-$("reference").addEventListener("keydown", event => {
-  if (event.key === "Enter") loadBible();
+$("loadBibleBtn").addEventListener("click",loadBible);
+$("reference").addEventListener("keydown",e=>{
+  if(e.key==="Enter")loadBible();
 });
 
-async function loadBible() {
-  const reference = $("reference").value.trim();
-  const translation = $("translation").value;
-
-  if (!reference) {
-    setStatus("readerMessage", "Enter or select a Bible reference first.", true);
+async function loadBible(){
+  const reference=$("reference").value.trim();
+  const translation=$("translation").value;
+  if(!reference){
+    setStatus("readerMessage","Enter a Bible reference first.",true);
     return;
   }
 
-  const button = $("loadBibleBtn");
-  button.disabled = true;
-  setStatus("readerMessage", "Loading Scripture…");
+  const button=$("loadBibleBtn");
+  button.disabled=true;
+  setStatus("readerMessage","Loading Scripture…");
 
-  try {
-    const url = "https://bible-api.com/" + encodeURIComponent(reference) +
-      "?translation=" + encodeURIComponent(translation);
-    const response = await fetch(url);
-    const data = await response.json();
-
-    if (!response.ok || !data.verses?.length) {
-      throw new Error(data.error || "Passage not found. Check the reference and try again.");
+  try{
+    const url="https://bible-api.com/"+encodeURIComponent(reference)+"?translation="+encodeURIComponent(translation);
+    const response=await fetch(url);
+    const data=await response.json();
+    if(!response.ok||!Array.isArray(data.verses)||!data.verses.length){
+      throw new Error(data.error||"Passage not found. Check the reference and translation.");
     }
 
     stopBibleAudio(false);
     closeVerseToolbar();
-
-    currentPassage = data.reference || reference;
-    currentVerses = data.verses.map(v => ({
-      number:Number(v.verse),
-      text:String(v.text).trim()
-    }));
-
-    $("bibleTitle").textContent = currentPassage + " · " + translation.toUpperCase();
+    currentPassage=data.reference||reference;
+    currentVerses=data.verses.map(v=>({number:Number(v.verse),text:String(v.text).trim()}));
+    selectedVerse=null;
+    $("bibleTitle").textContent=currentPassage+" · "+translation.toUpperCase();
     $("bibleText").replaceChildren();
-    selectedVerse = null;
 
-    currentVerses.forEach(item => {
-      const line = document.createElement("div");
-      line.className = "verse";
-      line.tabIndex = 0;
+    currentVerses.forEach(item=>{
+      const line=document.createElement("div");
+      line.className="verse";
+      line.tabIndex=0;
       line.setAttribute("role","button");
-      line.setAttribute("aria-label",`Select verse ${item.number}`);
-      line.dataset.verse = item.number;
+      line.dataset.verse=item.number;
 
-      const number = document.createElement("span");
-      number.className = "verse-number";
-      number.textContent = item.number;
-      line.append(number, document.createTextNode(" " + item.text));
+      const number=document.createElement("span");
+      number.className="verse-number";
+      number.textContent=item.number;
+      line.append(number,document.createTextNode(" "+item.text));
 
-      line.addEventListener("click", () => selectVerse(item.number));
-      line.addEventListener("keydown", event => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
+      line.addEventListener("click",()=>selectVerse(item.number));
+      line.addEventListener("keydown",e=>{
+        if(e.key==="Enter"||e.key===" "){
+          e.preventDefault();
           selectVerse(item.number);
         }
       });
-
-      applyStoredHighlight(line, item.number);
+      applyStoredHighlight(line,item.number);
       $("bibleText").appendChild(line);
     });
 
-    $("bibleOutput").hidden = false;
-    setStatus("readerMessage", "Passage loaded. Tap a verse to use the floating toolbar.");
-    setStatus("bibleAudioMessage", "Ready to read aloud. Press Play passage.");
-  } catch (error) {
-    setStatus("readerMessage", error.message + " Check your internet connection.", true);
-  } finally {
-    button.disabled = false;
+    $("bibleOutput").hidden=false;
+    setStatus("readerMessage","Passage loaded successfully.");
+    setStatus("bibleAudioMessage","Ready. Press Play passage.");
+  }catch(error){
+    setStatus("readerMessage",error.message+" Check your internet connection.",true);
+  }finally{
+    button.disabled=false;
   }
 }
 
-/* Floating verse toolbar */
-function highlightKey(verseNumber) {
-  return `${$("translation").value}|${currentPassage}|${verseNumber}`;
+/* Verse selection and highlights */
+function highlightKey(number){
+  return `${$("translation").value}|${currentPassage}|${number}`;
 }
 
-function getHighlights() {
-  return readStore("elhamHighlights", {});
-}
+function getHighlights(){return readStore(KEYS.highlights,{});}
 
-function applyStoredHighlight(element, verseNumber) {
-  const color = getHighlights()[highlightKey(verseNumber)];
-  if (["yellow","green","blue","pink","purple","orange"].includes(color)) {
-    element.classList.add("highlight-" + color);
+function applyStoredHighlight(element,number){
+  const color=getHighlights()[highlightKey(number)];
+  if(["yellow","green","blue","pink","purple","orange"].includes(color)){
+    element.classList.add("highlight-"+color);
   }
 }
 
-function closeVerseToolbar() {
-  const tools = $("verseTools");
-  tools.hidden = true;
-  tools.classList.remove("floating-verse-tools");
-  tools.style.top = "";
-  tools.style.left = "";
+function closeVerseToolbar(){
+  const tools=$("verseTools");
+  tools.hidden=true;
+  tools.classList.remove("floating");
+  tools.style.top="";
+  tools.style.left="";
 }
 
-function positionVerseToolbar() {
-  const tools = $("verseTools");
-  if (tools.hidden || selectedVerse === null) return;
-
-  const verse = $("bibleText").querySelector(
-    `.verse[data-verse="${selectedVerse}"]`
-  );
-  if (!verse) return;
-
-  const margin = 10;
-  const rect = verse.getBoundingClientRect();
-  const width = tools.offsetWidth;
-  const height = tools.offsetHeight;
-
-  let top = rect.bottom + 8;
-  if (top + height > window.innerHeight - margin) {
-    top = rect.top - height - 8;
-  }
-  top = Math.max(margin, Math.min(top, window.innerHeight - height - margin));
-
-  let left = Math.max(
-    margin,
-    Math.min(rect.left, window.innerWidth - width - margin)
-  );
-
-  tools.style.top = `${top}px`;
-  tools.style.left = `${left}px`;
+function positionVerseToolbar(){
+  const tools=$("verseTools");
+  if(tools.hidden||selectedVerse===null)return;
+  const verse=$("bibleText").querySelector(`.verse[data-verse="${selectedVerse}"]`);
+  if(!verse)return;
+  const margin=10,rect=verse.getBoundingClientRect();
+  const width=tools.offsetWidth,height=tools.offsetHeight;
+  let top=rect.bottom+8;
+  if(top+height>innerHeight-margin)top=rect.top-height-8;
+  top=Math.max(margin,Math.min(top,innerHeight-height-margin));
+  const left=Math.max(margin,Math.min(rect.left,innerWidth-width-margin));
+  tools.style.top=top+"px";
+  tools.style.left=left+"px";
 }
 
-function selectVerse(verseNumber) {
-  selectedVerse = verseNumber;
-
-  document.querySelectorAll(".verse").forEach(el => {
-    el.classList.toggle("selected", Number(el.dataset.verse) === verseNumber);
+function selectVerse(number){
+  selectedVerse=number;
+  document.querySelectorAll(".verse").forEach(el=>{
+    el.classList.toggle("selected",Number(el.dataset.verse)===number);
   });
-
-  const verse = currentVerses.find(v => v.number === verseNumber);
-  $("selectedVerseLabel").textContent = verse
-    ? `${currentPassage}:${verseNumber} — ${verse.text}`
-    : "Selected verse";
-
-  const tools = $("verseTools");
-  tools.classList.add("floating-verse-tools");
-  tools.hidden = false;
-
-  const activeColor = getHighlights()[highlightKey(verseNumber)];
-  document.querySelectorAll(".color-choice").forEach(button => {
-    button.setAttribute("aria-pressed", String(button.dataset.color === activeColor));
+  const verse=currentVerses.find(v=>v.number===number);
+  $("selectedVerseLabel").textContent=verse?`${currentPassage}:${number} — ${verse.text}`:"Selected verse";
+  const tools=$("verseTools");
+  tools.classList.add("floating");
+  tools.hidden=false;
+  const active=getHighlights()[highlightKey(number)];
+  document.querySelectorAll(".color-choice").forEach(b=>{
+    b.setAttribute("aria-pressed",String(b.dataset.color===active));
   });
-
   positionVerseToolbar();
   requestAnimationFrame(positionVerseToolbar);
 }
 
-window.addEventListener("scroll", () => {
-  if (!$("verseTools").hidden) positionVerseToolbar();
-}, {passive:true});
-
-window.addEventListener("resize", () => {
-  if (!$("verseTools").hidden) positionVerseToolbar();
+window.addEventListener("scroll",()=>{
+  if(!$("verseTools").hidden)positionVerseToolbar();
+},{passive:true});
+window.addEventListener("resize",()=>{
+  if(!$("verseTools").hidden)positionVerseToolbar();
 });
+$("closeVerseToolsBtn").addEventListener("click",closeVerseToolbar);
 
-$("closeVerseToolsBtn").addEventListener("click", closeVerseToolbar);
+document.querySelectorAll(".color-choice").forEach(button=>{
+  button.addEventListener("click",()=>{
+    if(selectedVerse===null)return;
+    const highlights=getHighlights();
+    highlights[highlightKey(selectedVerse)]=button.dataset.color;
+    if(!writeStore(KEYS.highlights,highlights))return;
 
-document.querySelectorAll(".color-choice").forEach(button => {
-  button.addEventListener("click", () => {
-    if (selectedVerse === null) return;
-
-    const highlights = getHighlights();
-    highlights[highlightKey(selectedVerse)] = button.dataset.color;
-
-    if (!writeStore("elhamHighlights", highlights)) {
-      setStatus("readerMessage", "Could not save highlight. Check device storage.", true);
-      return;
+    const line=$("bibleText").querySelector(`.verse[data-verse="${selectedVerse}"]`);
+    if(line){
+      line.classList.remove("highlight-yellow","highlight-green","highlight-blue","highlight-pink","highlight-purple","highlight-orange");
+      line.classList.add("highlight-"+button.dataset.color);
     }
-
-    const line = $("bibleText").querySelector(
-      `.verse[data-verse="${selectedVerse}"]`
-    );
-
-    if (line) {
-      line.classList.remove(
-        "highlight-yellow","highlight-green","highlight-blue",
-        "highlight-pink","highlight-purple","highlight-orange"
-      );
-      line.classList.add("highlight-" + button.dataset.color);
-    }
-
-    document.querySelectorAll(".color-choice").forEach(b => {
-      b.setAttribute("aria-pressed", String(b === button));
+    document.querySelectorAll(".color-choice").forEach(b=>{
+      b.setAttribute("aria-pressed",String(b===button));
     });
-
-    setStatus("readerMessage", "Verse highlight saved.");
-    requestAnimationFrame(positionVerseToolbar);
+    setStatus("readerMessage","Highlight saved.");
   });
 });
 
-$("removeHighlightBtn").addEventListener("click", () => {
-  if (selectedVerse === null) return;
-
-  const highlights = getHighlights();
+$("removeHighlightBtn").addEventListener("click",()=>{
+  if(selectedVerse===null)return;
+  const highlights=getHighlights();
   delete highlights[highlightKey(selectedVerse)];
-
-  if (!writeStore("elhamHighlights", highlights)) {
-    setStatus("readerMessage", "Could not update highlight.", true);
-    return;
-  }
-
-  const line = $("bibleText").querySelector(
-    `.verse[data-verse="${selectedVerse}"]`
-  );
-
-  if (line) {
-    line.classList.remove(
-      "highlight-yellow","highlight-green","highlight-blue",
-      "highlight-pink","highlight-purple","highlight-orange"
-    );
-  }
-
-  document.querySelectorAll(".color-choice").forEach(b =>
-    b.setAttribute("aria-pressed","false")
-  );
-  setStatus("readerMessage", "Highlight removed.");
+  if(!writeStore(KEYS.highlights,highlights))return;
+  const line=$("bibleText").querySelector(`.verse[data-verse="${selectedVerse}"]`);
+  if(line)line.classList.remove("highlight-yellow","highlight-green","highlight-blue","highlight-pink","highlight-purple","highlight-orange");
+  document.querySelectorAll(".color-choice").forEach(b=>b.setAttribute("aria-pressed","false"));
+  setStatus("readerMessage","Highlight removed.");
 });
 
-/* Bookmarks */
-function bookmarkExists(reference, translation, verseNumber = null) {
-  return readStore("elhamBookmarks").some(item =>
-    item.reference === reference &&
-    (item.translation || "web") === translation &&
-    (item.verse ?? null) === verseNumber
+/* Bookmarks: stable IDs and matching by normalized reference */
+function normalizeReference(value){
+  return String(value||"").trim().replace(/\s+/g," ").toLowerCase();
+}
+
+function bookmarkExists(reference,translation,verse){
+  const ref=normalizeReference(reference);
+  return readStore(KEYS.bookmarks,[]).some(item=>
+    normalizeReference(item.reference)===ref&&
+    (item.translation||"web")===translation&&
+    (item.verse??null)===(verse??null)
   );
 }
 
-function saveBookmark(bookmark) {
-  const bookmarks = readStore("elhamBookmarks");
-
-  if (bookmarkExists(bookmark.reference, bookmark.translation, bookmark.verse ?? null)) {
-    setStatus("readerMessage", "That Scripture is already bookmarked.");
+function saveBookmark(bookmark){
+  const bookmarks=readStore(KEYS.bookmarks,[]);
+  if(bookmarkExists(bookmark.reference,bookmark.translation,bookmark.verse)){
+    setStatus("readerMessage","This passage or verse is already bookmarked.");
     return;
   }
 
   bookmarks.unshift({
     ...bookmark,
-    id:Date.now() + Math.random(),
+    id:globalThis.crypto?.randomUUID?.()||String(Date.now())+Math.random().toString(36).slice(2),
     date:new Date().toISOString()
   });
 
-  if (!writeStore("elhamBookmarks", bookmarks)) {
-    setStatus("readerMessage", "Could not save bookmark. Check device storage.", true);
-    return;
+  if(writeStore(KEYS.bookmarks,bookmarks)){
+    setStatus("readerMessage",bookmark.verse!==null?"Verse bookmarked successfully.":"Passage bookmarked successfully.");
   }
-
-  setStatus("readerMessage", bookmark.verse ? "Verse bookmarked." : "Passage bookmarked.");
 }
 
-$("bookmarkPassageBtn").addEventListener("click", () => {
-  if (!currentPassage) return;
+$("bookmarkPassageBtn").addEventListener("click",()=>{
+  if(!currentPassage){
+    setStatus("readerMessage","Load a passage first.",true);
+    return;
+  }
   saveBookmark({
     reference:currentPassage,
     translation:$("translation").value,
@@ -667,11 +556,10 @@ $("bookmarkPassageBtn").addEventListener("click", () => {
   });
 });
 
-$("bookmarkVerseBtn").addEventListener("click", () => {
-  if (selectedVerse === null) return;
-  const verse = currentVerses.find(v => v.number === selectedVerse);
-  if (!verse) return;
-
+$("bookmarkVerseBtn").addEventListener("click",()=>{
+  if(selectedVerse===null)return;
+  const verse=currentVerses.find(v=>v.number===selectedVerse);
+  if(!verse)return;
   saveBookmark({
     reference:currentPassage,
     translation:$("translation").value,
@@ -681,423 +569,401 @@ $("bookmarkVerseBtn").addEventListener("click", () => {
   });
 });
 
-$("notePassageBtn").addEventListener("click", () => {
-  $("noteReference").value = currentPassage || $("reference").value.trim();
+/* Device speech */
+function speechSupported(){
+  return "speechSynthesis" in window&&"SpeechSynthesisUtterance" in window;
+}
+
+let speechRun=0;
+
+function stopBibleAudio(showStatus=true){
+  speechRun++;
+  if(speechSupported())window.speechSynthesis.cancel();
+  if(showStatus)setStatus("bibleAudioMessage","Audio stopped.");
+}
+
+function speakBibleText(text){
+  if(!text.trim()){
+    setStatus("bibleAudioMessage","Load a passage first.",true);
+    return;
+  }
+  if(!speechSupported()){
+    setStatus("bibleAudioMessage","Speech is not supported in this browser. Check your device's text-to-speech settings.",true);
+    return;
+  }
+
+  stopBibleAudio(false);
+  const run= speechRun;
+  const chunks=[];
+  let remaining=text.trim();
+
+  while(remaining.length){
+    if(remaining.length<=1800){chunks.push(remaining);break;}
+    let cut=remaining.lastIndexOf(". ",1800);
+    if(cut<800)cut=remaining.lastIndexOf(" ",1800);
+    if(cut<1)cut=1800;
+    chunks.push(remaining.slice(0,cut+1).trim());
+    remaining=remaining.slice(cut+1).trim();
+  }
+
+  let index=0;
+  function next(){
+    if(run!==speechRun||index>=chunks.length){
+      if(run===speechRun)setStatus("bibleAudioMessage","Finished reading.");
+      return;
+    }
+    const utterance=new SpeechSynthesisUtterance(chunks[index++]);
+    utterance.volume=Number($("bibleVolume").value);
+    utterance.rate=Number($("bibleRate").value);
+    const voice=speechSynthesis.getVoices().find(v=>/^en(-|_)/i.test(v.lang));
+    if(voice)utterance.voice=voice;
+    utterance.onstart=()=>setStatus("bibleAudioMessage","Reading Scripture aloud…");
+    utterance.onend=next;
+    utterance.onerror=e=>{
+      if(run===speechRun&&e.error!=="canceled"&&e.error!=="interrupted"){
+        setStatus("bibleAudioMessage","Audio failed. Check your device's speech settings.",true);
+      }
+    };
+    speechSynthesis.speak(utterance);
+  }
+  next();
+}
+
+$("playBibleBtn").addEventListener("click",()=>speakBibleText(currentVerses.map(v=>v.text).join(" ")));
+$("listenVerseBtn").addEventListener("click",()=>{
+  if(selectedVerse===null)return;
+  speakBibleText(currentVerses.find(v=>v.number===selectedVerse)?.text||"");
+});
+$("pauseBibleBtn").addEventListener("click",()=>{
+  if(speechSupported()&&speechSynthesis.speaking){
+    speechSynthesis.pause();
+    setStatus("bibleAudioMessage","Audio paused.");
+  }
+});
+$("resumeBibleBtn").addEventListener("click",()=>{
+  if(speechSupported()&&speechSynthesis.paused){
+    speechSynthesis.resume();
+    setStatus("bibleAudioMessage","Resuming reading…");
+  }
+});
+$("stopBibleBtn").addEventListener("click",()=>stopBibleAudio());
+$("bibleVolume").addEventListener("input",()=>{
+  $("volumeValue").textContent=Math.round(Number($("bibleVolume").value)*100)+"%";
+});
+$("notePassageBtn").addEventListener("click",()=>{
+  $("noteReference").value=currentPassage||$("reference").value.trim();
   openPage("notes");
   $("noteTitle").focus();
 });
 
-/* Audio Bible */
-function getSpeechSupport() {
-  return "speechSynthesis" in window &&
-    "SpeechSynthesisUtterance" in window;
-}
-
-function speakBibleText(text) {
-  if (!text.trim()) {
-    setStatus("bibleAudioMessage", "Load a passage first.", true);
-    return;
-  }
-
-  if (!getSpeechSupport()) {
-    setStatus("bibleAudioMessage",
-      "Audio reading is not supported in this browser. Try Chrome and check Android text-to-speech settings.",
-      true);
-    return;
-  }
-
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.volume = Number($("bibleVolume").value);
-  utterance.rate = Number($("bibleRate").value);
-
-  const voice = window.speechSynthesis.getVoices()
-    .find(v => /^en(-|_)/i.test(v.lang));
-  if (voice) utterance.voice = voice;
-
-  utterance.onstart = () => setStatus("bibleAudioMessage", "Reading Scripture aloud…");
-  utterance.onend = () => setStatus("bibleAudioMessage", "Finished reading.");
-  utterance.onerror = event => {
-    if (!["canceled","interrupted"].includes(event.error)) {
-      setStatus("bibleAudioMessage", "Audio playback failed. Check your device's text-to-speech settings.", true);
-    }
-  };
-
-  window.speechSynthesis.speak(utterance);
-}
-
-$("playBibleBtn").addEventListener("click", () => {
-  speakBibleText(currentVerses.map(v => v.text).join(" "));
-});
-
-$("listenVerseBtn").addEventListener("click", () => {
-  if (selectedVerse === null) return;
-  speakBibleText(currentVerses.find(v => v.number === selectedVerse)?.text || "");
-});
-
-$("pauseBibleBtn").addEventListener("click", () => {
-  if (getSpeechSupport() && window.speechSynthesis.speaking) {
-    window.speechSynthesis.pause();
-    setStatus("bibleAudioMessage", "Audio paused.");
-  }
-});
-
-$("resumeBibleBtn").addEventListener("click", () => {
-  if (getSpeechSupport() && window.speechSynthesis.paused) {
-    window.speechSynthesis.resume();
-    setStatus("bibleAudioMessage", "Resuming Scripture…");
-  } else {
-    setStatus("bibleAudioMessage", "There is no paused reading to resume.");
-  }
-});
-
-function stopBibleAudio(showStatus = true) {
-  if (getSpeechSupport()) window.speechSynthesis.cancel();
-  if (showStatus) setStatus("bibleAudioMessage", "Audio stopped.");
-}
-
-$("stopBibleBtn").addEventListener("click", () => stopBibleAudio(true));
-$("bibleVolume").addEventListener("input", () => {
-  $("volumeValue").textContent = Math.round(Number($("bibleVolume").value) * 100) + "%";
-});
-$("bibleRate").addEventListener("change", () => {
-  setStatus("bibleAudioMessage", "Reading speed updated for the next playback.");
-});
-
 /* Journal */
-$("clearNoteBtn").addEventListener("click", () => {
-  $("noteTitle").value = "";
-  $("noteReference").value = "";
-  $("noteBody").value = "";
-  setStatus("noteMessage", "Fields cleared. Saved reflections remain untouched.");
+$("clearNoteBtn").addEventListener("click",()=>{
+  $("noteTitle").value="";
+  $("noteReference").value="";
+  $("noteBody").value="";
+  setStatus("noteMessage","Fields cleared. Saved reflections remain.");
 });
 
-$("saveNoteBtn").addEventListener("click", () => {
-  const title = $("noteTitle").value.trim();
-  const reference = $("noteReference").value.trim();
-  const body = $("noteBody").value.trim();
-
-  if (!title && !body) {
-    setStatus("noteMessage", "Write a title or reflection before saving.", true);
+$("saveNoteBtn").addEventListener("click",()=>{
+  const title=$("noteTitle").value.trim();
+  const reference=$("noteReference").value.trim();
+  const body=$("noteBody").value.trim();
+  if(!title&&!body){
+    setStatus("noteMessage","Write a title or reflection first.",true);
     return;
   }
-
-  const notes = readStore("elhamNotes");
+  const notes=readStore(KEYS.notes,[]);
   notes.unshift({
-    id:Date.now(),
-    title:title || "Untitled reflection",
+    id:globalThis.crypto?.randomUUID?.()||String(Date.now())+Math.random(),
+    title:title||"Untitled reflection",
     reference,body,date:new Date().toLocaleString()
   });
-
-  if (!writeStore("elhamNotes", notes)) {
-    setStatus("noteMessage", "Could not save the reflection. Check device storage.", true);
-    return;
-  }
-
-  $("noteTitle").value = "";
-  $("noteReference").value = "";
-  $("noteBody").value = "";
-  setStatus("noteMessage", "Reflection saved on this device.");
+  if(!writeStore(KEYS.notes,notes))return;
+  $("noteTitle").value="";
+  $("noteReference").value="";
+  $("noteBody").value="";
+  setStatus("noteMessage","Reflection saved on this device.");
   renderNotes();
 });
 
-function renderNotes() {
-  const container = $("savedNotes");
-  const notes = readStore("elhamNotes");
+function renderNotes(){
+  const container=$("savedNotes");
+  const notes=readStore(KEYS.notes,[]);
   container.replaceChildren();
-
-  if (!notes.length) {
-    container.textContent = "Your saved reflections will appear here.";
+  if(!notes.length){
+    container.textContent="Your saved reflections will appear here.";
     return;
   }
-
-  notes.forEach(note => {
-    const item = document.createElement("div");
-    item.className = "saved-item";
-    const title = document.createElement("h3");
-    title.textContent = note.title || "Untitled reflection";
-    const meta = document.createElement("div");
-    meta.className = "small-note";
-    meta.textContent = [note.reference,note.date].filter(Boolean).join(" · ");
-    const body = document.createElement("p");
-    body.textContent = note.body || "";
-    const remove = document.createElement("button");
-    remove.className = "btn danger";
-    remove.textContent = "Delete reflection";
-    remove.addEventListener("click", () => {
-      if (!confirm("Delete this saved reflection?")) return;
-      writeStore("elhamNotes", readStore("elhamNotes").filter(n => n.id !== note.id));
-      renderNotes();
+  notes.forEach(note=>{
+    const item=document.createElement("div");
+    item.className="saved-item";
+    const title=document.createElement("h3");
+    title.textContent=note.title||"Untitled reflection";
+    const meta=document.createElement("div");
+    meta.className="small-note";
+    meta.textContent=[note.reference,note.date].filter(Boolean).join(" · ");
+    const body=document.createElement("p");
+    body.textContent=note.body||"";
+    const remove=document.createElement("button");
+    remove.className="btn danger";
+    remove.textContent="Delete reflection";
+    remove.addEventListener("click",()=>{
+      if(!confirm("Delete this reflection?"))return;
+      if(writeStore(KEYS.notes,readStore(KEYS.notes,[]).filter(n=>n.id!==note.id)))renderNotes();
     });
     item.append(title,meta,body,remove);
     container.appendChild(item);
   });
 }
 
-/* Sermon generator */
-$("generateSermonBtn").addEventListener("click", generateSermon);
+/* Sermon generation */
+$("generateSermonBtn").addEventListener("click",generateSermon);
 
-async function generateSermon() {
-  const topic = $("sermonTopic").value.trim();
-  const passage = $("sermonPassage").value.trim();
-  const audience = $("sermonAudience").value;
-  const length = $("sermonLength").value;
+async function generateSermon(){
+  const topic=$("sermonTopic").value.trim();
+  const passage=$("sermonPassage").value.trim();
+  const audience=$("sermonAudience").value;
+  const length=$("sermonLength").value;
 
-  if (!topic && !passage) {
-    setStatus("sermonMessage", "Enter a topic or main Scripture first.", true);
+  if(!topic&&!passage){
+    setStatus("sermonMessage","Enter a topic or Scripture first.",true);
     return;
   }
 
-  const button = $("generateSermonBtn");
-  button.disabled = true;
-  button.textContent = "Preparing…";
-  setStatus("sermonMessage", "Preparing your sermon. This may take a moment.");
+  const button=$("generateSermonBtn");
+  button.disabled=true;
+  button.textContent="Preparing…";
+  setStatus("sermonMessage","Preparing your sermon…");
 
-  try {
-    const data = await postJSON("/api/sermon", {
+  try{
+    const data=await postJSON("/api/sermon",{
       topic,passage,scripture:passage,audience,length,duration:length,
-      style:"Scripture-centred, thoughtful, clear, practical, and pastoral"
+      style:"Scripture-centred, thoughtful, clear, practical and pastoral. Use original wording."
     });
+    const text=getResponseText(data);
+    if(!text)throw new Error("The server returned no sermon text.");
 
-    const text = getResponseText(data);
-    if (!text) throw new Error("The server returned no sermon text.");
-
-    currentSermon = text;
-    $("sermonText").textContent = text;
-    $("sermonOutput").hidden = false;
-    $("floatingAudioBtn").hidden = false;
-    $("sermonAudio").style.display = "none";
-    setStatus("sermonMessage", "Your sermon is ready.");
-    setStatus("audioMessage", "Press Listen to Sermon to generate audio.");
+    currentSermon=text;
+    $("sermonText").textContent=text;
+    $("sermonOutput").hidden=false;
+    $("floatingAudioBtn").hidden=false;
+    $("sermonAudio").style.display="none";
+    setStatus("sermonMessage","Your sermon is ready.");
+    setStatus("audioMessage","Press Play generated audio to create the audio.");
     $("sermonOutput").scrollIntoView({behavior:"smooth",block:"start"});
-  } catch (error) {
-    setStatus("sermonMessage", "Could not prepare sermon: " + error.message, true);
-  } finally {
-    button.disabled = false;
-    button.textContent = "Prepare sermon";
+  }catch(error){
+    setStatus("sermonMessage","Could not prepare sermon: "+error.message,true);
+  }finally{
+    button.disabled=false;
+    button.textContent="Prepare sermon";
   }
 }
 
-$("saveSermonBtn").addEventListener("click", () => {
-  if (!currentSermon) return;
-  const notes = readStore("elhamNotes");
+$("saveSermonBtn").addEventListener("click",()=>{
+  if(!currentSermon)return;
+  const notes=readStore(KEYS.notes,[]);
   notes.unshift({
-    id:Date.now(),
-    title:"Sermon: " + ($("sermonTopic").value.trim() || $("sermonPassage").value.trim() || "Personal study"),
+    id:globalThis.crypto?.randomUUID?.()||String(Date.now())+Math.random(),
+    title:"Sermon: "+($("sermonTopic").value.trim()||$("sermonPassage").value.trim()||"Personal study"),
     reference:$("sermonPassage").value.trim(),
-    body:currentSermon,
-    date:new Date().toLocaleString()
+    body:currentSermon,date:new Date().toLocaleString()
   });
-
-  const saved = writeStore("elhamNotes", notes);
-  setStatus("audioMessage", saved ? "Sermon saved to your journal." : "Could not save sermon.", !saved);
+  if(writeStore(KEYS.notes,notes)){
+    renderNotes();
+    setStatus("audioMessage","Sermon saved to your journal.");
+  }
 });
 
-/* Sermon audio */
-function splitAudioText(text, maxLength = 900) {
-  const chunks = [];
-  let remaining = text.trim();
-
-  while (remaining.length) {
-    if (remaining.length <= maxLength) {
-      chunks.push(remaining);
-      break;
+/* Generated sermon audio */
+function splitAudioText(text,maxLength=900){
+  const chunks=[];
+  let remaining=text.trim();
+  while(remaining.length){
+    if(remaining.length<=maxLength){chunks.push(remaining);break;}
+    let cut=-1;
+    for(const separator of ["\n\n",". ","? ","! ","; ",", "," "]){
+      const candidate=remaining.lastIndexOf(separator,maxLength);
+      if(candidate>=Math.floor(maxLength*.5)&&candidate>cut)cut=candidate+separator.length;
     }
-    let cut = -1;
-    for (const separator of ["\n\n",". ","? ","! ","; ",", "," "]) {
-      const candidate = remaining.lastIndexOf(separator,maxLength);
-      if (candidate >= Math.floor(maxLength * .5) && candidate > cut) {
-        cut = candidate + separator.length;
-      }
-    }
-    if (cut < 1) cut = maxLength;
+    if(cut<1)cut=maxLength;
     chunks.push(remaining.slice(0,cut).trim());
-    remaining = remaining.slice(cut).trim();
+    remaining=remaining.slice(cut).trim();
   }
   return chunks.filter(Boolean);
 }
 
-async function playSermonAudio() {
-  if (!currentSermon) {
-    setStatus("audioMessage", "Prepare a sermon first.", true);
+function releaseAudioUrls(){
+  for(const url of audioUrls)URL.revokeObjectURL(url);
+  audioUrls.clear();
+  activeAudioUrl=null;
+}
+
+function stopSermonAudio(){
+  audioRunId++;
+  const audio=$("sermonAudio");
+  audio.pause();
+  audio.removeAttribute("src");
+  audio.load();
+  releaseAudioUrls();
+  $("playAudioBtn").disabled=false;
+  $("floatingAudioBtn").disabled=false;
+  $("playAudioBtn").textContent="Play generated audio";
+  $("floatingAudioBtn").textContent="🎧 Listen to Sermon";
+  setStatus("audioMessage","Audio stopped.");
+}
+
+$("stopAudioBtn").addEventListener("click",stopSermonAudio);
+
+async function playSermonAudio(){
+  if(!currentSermon){
+    setStatus("audioMessage","Prepare a sermon first.",true);
     return;
   }
 
-  const runId = ++audioRunId;
-  const audio = $("sermonAudio");
-  const buttons = [$("playAudioBtn"),$("floatingAudioBtn")];
+  const run=++audioRunId;
+  const audio=$("sermonAudio");
+  $("playAudioBtn").disabled=true;
+  $("floatingAudioBtn").disabled=true;
+  $("playAudioBtn").textContent="Preparing audio…";
+  $("floatingAudioBtn").textContent="⏳ Preparing audio…";
 
-  buttons.forEach(button => {
-    button.disabled = true;
-    button.textContent = button.id === "floatingAudioBtn" ? "⏳ Preparing audio…" : "Preparing audio…";
-  });
+  audio.pause();
+  releaseAudioUrls();
+  audio.style.display="block";
 
-  try {
-    const maxCharacters = 5000;
-    const chunks = splitAudioText(currentSermon.slice(0,maxCharacters));
-    audio.style.display = "block";
-    audio.pause();
+  const maxCharacters=5000;
+  audioChunks=splitAudioText(currentSermon.slice(0,maxCharacters));
+  audioChunkIndex=0;
 
-    if (activeAudioUrl) {
-      URL.revokeObjectURL(activeAudioUrl);
-      activeAudioUrl = null;
-    }
+  setStatus("audioMessage",currentSermon.length>maxCharacters?
+    "Playing the first 5,000 characters to limit usage.":"Generating sermon audio…");
 
-    setStatus("audioMessage", currentSermon.length > maxCharacters
-      ? "Playing the first 5,000 characters to limit free-tier usage."
-      : "Generating audio. Keep this page open while it plays.");
+  try{
+    while(audioChunkIndex<audioChunks.length){
+      if(run!==audioRunId)return;
+      setStatus("audioMessage",`Generating audio section ${audioChunkIndex+1} of ${audioChunks.length}…`);
 
-    for (let i = 0; i < chunks.length; i++) {
-      if (runId !== audioRunId) return;
-      setStatus("audioMessage", `Generating audio section ${i + 1} of ${chunks.length}…`);
-
-      const response = await fetch(API_BASE + "/api/voice", {
+      const response=await fetch(API_BASE+"/api/voice",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({text:chunks[i],voice:"en-US-JennyNeural"})
+        body:JSON.stringify({text:audioChunks[audioChunkIndex],voice:"en-US-JennyNeural"})
       });
 
-      if (runId !== audioRunId) return;
-
-      if (!response.ok) {
-        const details = await response.json().catch(() => ({}));
-        throw new Error(details.error || details.message || `Voice service returned HTTP ${response.status}.`);
+      if(run!==audioRunId)return;
+      if(!response.ok){
+        const details=await response.json().catch(()=>({}));
+        throw new Error(details.error||details.message||`Voice service returned HTTP ${response.status}.`);
       }
 
-      const blob = await response.blob();
-      if (!blob.size) throw new Error("The voice service returned empty audio.");
-      if (runId !== audioRunId) return;
+      const blob=await response.blob();
+      if(!blob.size)throw new Error("The voice service returned empty audio.");
+      if(run!==audioRunId)return;
 
-      activeAudioUrl = URL.createObjectURL(blob);
-      audio.src = activeAudioUrl;
+      const url=URL.createObjectURL(blob);
+      audioUrls.add(url);
+      activeAudioUrl=url;
+      audio.src=url;
       audio.load();
 
-      await new Promise((resolve,reject) => {
-        audio.onended = resolve;
-        audio.onerror = () => reject(new Error("Generated audio could not be played."));
+      await new Promise((resolve,reject)=>{
+        audio.onended=resolve;
+        audio.onerror=()=>reject(new Error("Audio could not be played."));
         audio.play().catch(reject);
       });
 
-      if (runId !== audioRunId) return;
-      URL.revokeObjectURL(activeAudioUrl);
-      activeAudioUrl = null;
+      if(run!==audioRunId)return;
+      audioChunkIndex++;
     }
-
-    if (runId === audioRunId) setStatus("audioMessage", "Sermon audio finished playing.");
-  } catch (error) {
-    if (runId === audioRunId) setStatus("audioMessage", "Audio unavailable: " + error.message, true);
-  } finally {
-    if (runId === audioRunId) {
-      buttons.forEach(button => {
-        button.disabled = false;
-        button.textContent = button.id === "floatingAudioBtn" ? "🎧 Listen to Sermon" : "Play generated audio";
-      });
+    setStatus("audioMessage","Sermon audio finished.");
+  }catch(error){
+    if(run===audioRunId)setStatus("audioMessage","Audio unavailable: "+error.message,true);
+  }finally{
+    if(run===audioRunId){
+      $("playAudioBtn").disabled=false;
+      $("floatingAudioBtn").disabled=false;
+      $("playAudioBtn").textContent="Play generated audio";
+      $("floatingAudioBtn").textContent="🎧 Listen to Sermon";
+      releaseAudioUrls();
     }
   }
 }
 
-$("playAudioBtn").addEventListener("click", playSermonAudio);
-$("floatingAudioBtn").addEventListener("click", playSermonAudio);
-
-$("stopAudioBtn").addEventListener("click", () => {
-  audioRunId++;
-  const audio = $("sermonAudio");
-  audio.pause();
-  audio.currentTime = 0;
-  audio.removeAttribute("src");
-  audio.load();
-
-  if (activeAudioUrl) {
-    URL.revokeObjectURL(activeAudioUrl);
-    activeAudioUrl = null;
-  }
-
-  $("playAudioBtn").disabled = false;
-  $("playAudioBtn").textContent = "Play generated audio";
-  $("floatingAudioBtn").disabled = false;
-  $("floatingAudioBtn").textContent = "🎧 Listen to Sermon";
-  setStatus("audioMessage", "Audio stopped.");
-});
+$("playAudioBtn").addEventListener("click",playSermonAudio);
+$("floatingAudioBtn").addEventListener("click",playSermonAudio);
 
 /* Scripture Q&A */
-$("askBtn").addEventListener("click", askScripture);
+$("askBtn").addEventListener("click",askScripture);
 
-async function askScripture() {
-  const question = $("questionInput").value.trim();
-  const passage = $("questionPassage").value.trim();
-
-  if (!question) {
-    setStatus("askMessage", "Enter a question first.", true);
+async function askScripture(){
+  const question=$("questionInput").value.trim();
+  const passage=$("questionPassage").value.trim();
+  if(!question){
+    setStatus("askMessage","Enter a question first.",true);
     return;
   }
 
-  const button = $("askBtn");
-  button.disabled = true;
-  button.textContent = "Thinking…";
-  setStatus("askMessage", "Exploring your question…");
+  const button=$("askBtn");
+  button.disabled=true;
+  button.textContent="Thinking…";
+  setStatus("askMessage","Exploring your question…");
 
-  try {
-    const data = await postJSON("/api/ask",{question,passage,scripture:passage});
-    const answer = getResponseText(data);
-    if (!answer) throw new Error("The server returned an empty answer.");
-
-    $("answerText").textContent = answer;
-    $("answerCard").hidden = false;
-    setStatus("askMessage", "Response ready.");
-  } catch (error) {
-    setStatus("askMessage", "Could not get an answer: " + error.message, true);
-  } finally {
-    button.disabled = false;
-    button.textContent = "Explore Scripture";
+  try{
+    const data=await postJSON("/api/ask",{question,passage,scripture:passage});
+    const answer=getResponseText(data);
+    if(!answer)throw new Error("The server returned an empty answer.");
+    $("answerText").textContent=answer;
+    $("answerCard").hidden=false;
+    setStatus("askMessage","Response ready.");
+  }catch(error){
+    setStatus("askMessage","Could not get an answer: "+error.message,true);
+  }finally{
+    button.disabled=false;
+    button.textContent="Explore Scripture";
   }
 }
 
-/* Seven-day reading plan */
-const readingPlan = [
- ["Day 1","Trusting God","Proverbs 3:1-8"],
- ["Day 2","Finding peace","Philippians 4:4-9"],
- ["Day 3","Walking by faith","Hebrews 11:1-6"],
- ["Day 4","Love in action","1 Corinthians 13:1-13"],
- ["Day 5","Strength in weakness","2 Corinthians 12:7-10"],
- ["Day 6","Forgiveness","Matthew 6:9-15"],
- ["Day 7","Abiding in Christ","John 15:1-11"]
+/* Reading plan */
+const readingPlan=[
+["Day 1","Trusting God","Proverbs 3:1-8"],
+["Day 2","Finding peace","Philippians 4:4-9"],
+["Day 3","Walking by faith","Hebrews 11:1-6"],
+["Day 4","Love in action","1 Corinthians 13:1-13"],
+["Day 5","Strength in weakness","2 Corinthians 12:7-10"],
+["Day 6","Forgiveness","Matthew 6:9-15"],
+["Day 7","Abiding in Christ","John 15:1-11"]
 ];
 
-function renderReadingPlan() {
-  const container = $("readingDays");
+function renderReadingPlan(){
+  const container=$("readingDays");
   container.replaceChildren();
-  const completed = readStore("elhamPlan",[]);
+  const completed=readStore(KEYS.plan,[]);
 
-  readingPlan.forEach(([day,theme,reference],index) => {
-    const wrapper = document.createElement("div");
-    wrapper.className = "saved-item day";
+  readingPlan.forEach(([day,theme,reference],index)=>{
+    const wrapper=document.createElement("div");
+    wrapper.className="saved-item day";
 
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.id = "planDay" + index;
-    checkbox.checked = completed.includes(index);
-    checkbox.setAttribute("aria-label",day + " completed");
+    const checkbox=document.createElement("input");
+    checkbox.type="checkbox";
+    checkbox.id="planDay"+index;
+    checkbox.checked=completed.includes(index);
 
-    checkbox.addEventListener("change", () => {
-      let updated = readStore("elhamPlan",[]);
-      updated = checkbox.checked
-        ? [...new Set([...updated,index])]
-        : updated.filter(item => item !== index);
-      writeStore("elhamPlan",updated);
-      setStatus("planMessage",`${updated.length} of ${readingPlan.length} days completed.`);
+    checkbox.addEventListener("change",()=>{
+      let updated=readStore(KEYS.plan,[]);
+      updated=checkbox.checked?[...new Set([...updated,index])]:updated.filter(n=>n!==index);
+      if(writeStore(KEYS.plan,updated)){
+        setStatus("planMessage",`${updated.length} of ${readingPlan.length} days completed.`);
+      }else checkbox.checked=!checkbox.checked;
     });
 
-    const label = document.createElement("label");
-    label.htmlFor = checkbox.id;
-    const heading = document.createElement("strong");
-    heading.textContent = day + ": " + theme;
-    const detail = document.createElement("div");
-    detail.className = "small-note";
-    detail.textContent = reference + " · Tap to read";
-    detail.style.cursor = "pointer";
-
-    detail.addEventListener("click", () => {
-      $("reference").value = reference;
+    const label=document.createElement("label");
+    label.htmlFor=checkbox.id;
+    const heading=document.createElement("strong");
+    heading.textContent=day+": "+theme;
+    const detail=document.createElement("div");
+    detail.className="small-note";
+    detail.textContent=reference+" · Tap to read";
+    detail.addEventListener("click",()=>{
+      $("reference").value=reference;
       openPage("reader");
       loadBible();
     });
@@ -1111,73 +977,70 @@ function renderReadingPlan() {
 }
 
 /* Saved Scripture */
-function renderBookmarks() {
-  const container = $("savedBookmarks");
-  const bookmarks = readStore("elhamBookmarks");
+function renderBookmarks(){
+  const container=$("savedBookmarks");
+  const bookmarks=readStore(KEYS.bookmarks,[]);
   container.replaceChildren();
 
-  if (!bookmarks.length) {
-    container.textContent = "Your bookmarked passages will appear here.";
+  if(!bookmarks.length){
+    container.textContent="Your bookmarked passages will appear here.";
     return;
   }
 
-  bookmarks.forEach(bookmark => {
-    const item = document.createElement("div");
-    item.className = "saved-item";
+  bookmarks.forEach(bookmark=>{
+    const item=document.createElement("div");
+    item.className="saved-item";
 
-    const title = document.createElement("h3");
-    title.textContent = bookmark.verse
-      ? `${bookmark.reference}:${bookmark.verse}`
-      : bookmark.reference;
+    const title=document.createElement("h3");
+    title.textContent=bookmark.verse!==null&&bookmark.verse!==undefined?
+      `${bookmark.reference}:${bookmark.verse}`:bookmark.reference;
 
-    const meta = document.createElement("div");
-    meta.className = "small-note";
-    meta.textContent = (bookmark.translation || "web").toUpperCase() +
-      (bookmark.date ? " · " + new Date(bookmark.date).toLocaleDateString() : "");
-
+    const meta=document.createElement("div");
+    meta.className="small-note";
+    meta.textContent=(bookmark.translation||"web").toUpperCase()+
+      (bookmark.date?" · "+new Date(bookmark.date).toLocaleDateString():"");
     item.append(title,meta);
 
-    if (bookmark.text) {
-      const verseText = document.createElement("p");
-      verseText.textContent = bookmark.text;
-      item.appendChild(verseText);
+    if(bookmark.text){
+      const text=document.createElement("p");
+      text.textContent=bookmark.text;
+      item.appendChild(text);
     }
 
-    const open = document.createElement("button");
-    open.className = "btn";
-    open.textContent = bookmark.verse ? "Open verse" : "Read passage";
+    const open=document.createElement("button");
+    open.className="btn";
+    open.textContent=bookmark.verse!==null&&bookmark.verse!==undefined?"Open verse":"Read passage";
 
-    open.addEventListener("click", async () => {
-      $("reference").value = bookmark.verse
-        ? `${bookmark.reference}:${bookmark.verse}`
-        : bookmark.reference;
-      $("translation").value = bookmark.translation || "web";
+    open.addEventListener("click",async()=>{
+      $("reference").value=bookmark.verse!==null&&bookmark.verse!==undefined?
+        `${bookmark.reference}:${bookmark.verse}`:bookmark.reference;
+      $("translation").value=bookmark.translation||"web";
       openPage("reader");
       await loadBible();
 
-      if (bookmark.verse !== null && bookmark.verse !== undefined) {
-        selectVerse(Number(bookmark.verse));
-        $("bibleText").querySelector(
-          `.verse[data-verse="${bookmark.verse}"]`
-        )?.scrollIntoView({behavior:"smooth",block:"center"});
-        requestAnimationFrame(positionVerseToolbar);
+      if(bookmark.verse!==null&&bookmark.verse!==undefined){
+        const verseNumber=Number(bookmark.verse);
+        if(currentVerses.some(v=>v.number===verseNumber)){
+          selectVerse(verseNumber);
+          $("bibleText").querySelector(`.verse[data-verse="${verseNumber}"]`)
+            ?.scrollIntoView({behavior:"smooth",block:"center"});
+          requestAnimationFrame(positionVerseToolbar);
+        }
       }
     });
 
-    const remove = document.createElement("button");
-    remove.className = "btn danger";
-    remove.textContent = "Remove bookmark";
-
-    remove.addEventListener("click", () => {
-      const updated = readStore("elhamBookmarks").filter(b =>
-        bookmark.id !== undefined
-          ? b.id !== bookmark.id
-          : !(b.reference === bookmark.reference &&
-              (b.translation || "web") === (bookmark.translation || "web") &&
-              (b.verse ?? null) === (bookmark.verse ?? null))
+    const remove=document.createElement("button");
+    remove.className="btn danger";
+    remove.textContent="Remove bookmark";
+    remove.addEventListener("click",()=>{
+      const updated=readStore(KEYS.bookmarks,[]).filter(b=>
+        bookmark.id!==undefined?
+          b.id!==bookmark.id:
+          !(normalizeReference(b.reference)===normalizeReference(bookmark.reference)&&
+          (b.translation||"web")===(bookmark.translation||"web")&&
+          (b.verse??null)===(bookmark.verse??null))
       );
-      writeStore("elhamBookmarks",updated);
-      renderBookmarks();
+      if(writeStore(KEYS.bookmarks,updated))renderBookmarks();
     });
 
     item.append(open,document.createTextNode(" "),remove);
@@ -1185,7 +1048,7 @@ function renderBookmarks() {
   });
 }
 
-/* Start the app */
+/* Start */
 initialiseBibleSelectors();
 renderNotes();
 renderBookmarks();
